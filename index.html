@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estanza — Turning clients into guests</title>
+<meta name="description" content="Estanza es una firma de consultoría en Client Experience que traduce los principios de la hospitalidad de alto nivel al mundo de los servicios profesionales.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="sidebar">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="overlay"></div>
+
+<nav class="sidebar" id="sidebar">
+  <button class="logo" data-scroll-target="#top" aria-label="Ir al inicio">
+    <img src="assets/icons/logo-mark.svg" alt="Estanza" class="logo-mark">
+    <img src="assets/icons/logo-subtitle.svg" alt="Sello de experiencia" class="logo-subtitle">
+  </button>
+
+  <div class="nav-group">
+    <p class="nav-numeral">I.</p>
+    <div class="nav-links">
+      <p class="nav-label">estanza</p>
+      <a class="nav-link" href="#sobre-estanza">Sobre Estanza</a>
+      <a class="nav-link" href="#detras-de-estanza">Detrás de Estanza</a>
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <p class="nav-numeral">II.</p>
+    <div class="nav-links">
+      <p class="nav-label">servicios</p>
+      <a class="nav-link" href="#servicios" data-slide="0">Rediseño de experiencia</a>
+      <a class="nav-link" href="#servicios" data-slide="1">Talleres</a>
+      <a class="nav-link" href="#servicios" data-slide="2">Acompañamiento</a>
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <p class="nav-numeral">III.</p>
+    <div class="nav-links">
+      <p class="nav-label">tu proyecto</p>
+      <a class="nav-link" href="#tu-proyecto">Cómo comenzamos</a>
+    </div>
+  </div>
+
+  <div class="nav-group">
+    <p class="nav-numeral">IV.</p>
+    <div class="nav-links">
+      <p class="nav-label">contacto</p>
+      <a class="nav-link" href="#contacto">Ponte en contacto</a>
+      <a class="nav-link nav-link--inline" href="mailto:hola@estanzacx.com">hola@estanzacx.com <span class="arrow-glyph">↝</span></a>
+      <a class="nav-link nav-link--inline" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn <span class="arrow-glyph">↝</span></a>
+    </div>
+  </div>
+</nav>
+
+<main class="content" id="top">
+
+  <section class="hero-wrapper" id="hero">
+    <div class="hero-sticky">
+      <h1 class="hero-title">Turning clients into guests</h1>
+      <a class="btn" href="#servicios">
+        <span>Cómo lo hacemos</span>
+        <img src="assets/icons/arrow.svg" alt="" class="btn-arrow">
+      </a>
+    </div>
+
+    <img class="hero-photo hero-photo--a" src="assets/images/hero-2.png" alt="Equipo de Estanza conversando en oficina">
+    <img class="hero-photo hero-photo--b" src="assets/images/hero-3.png" alt="Detalle de manos trabajando">
+    <img class="hero-photo hero-photo--c" src="assets/images/hero-1.png" alt="Reunión de equipo en sala de oficina">
+  </section>
+
+  <section class="about" id="sobre-estanza">
+    <p class="eyebrow">ESTANZA</p>
+    <h2 class="section-title tracking-wide">Sobre Estanza</h2>
+    <img class="about-photo" src="assets/images/sobre-estanza.png" alt="Persona trabajando en Estanza">
+    <div class="about-text">
+      <p>Estanza es una firma de consultoría en Client Experience que traduce los principios de la hospitalidad de alto nivel al mundo de los servicios profesionales y a organizaciones que quieren transformar la relación con sus clientes.</p>
+      <p>Diseñamos experiencias y flujos de trabajo en los que el cliente se sienta reconocido, cuidado y recordado en cada interacción. Creemos que la verdadera hospitalidad comienza al ver realmente al otro, entenderlo y responder con creatividad e intención. Cuando esto sucede, la experiencia deja de ser un detalle y se convierte en una ventaja competitiva difícil de replicar.</p>
+    </div>
+  </section>
+
+  <section class="about about--behind" id="detras-de-estanza">
+    <p class="eyebrow">ESTANZA</p>
+    <img class="portrait-photo" src="assets/images/laura-dueri.png" alt="Laura Dueri, fundadora de Estanza">
+    <h2 class="section-title tracking-wide">Detrás de Estanza</h2>
+    <div class="about-text">
+      <p>Laura Dueri es abogada, consultora en Client Experience y cuenta con un MBA en Global Hospitality Management de Les Roches Switzerland. Su trayectoria le ha permitido entender cómo el rigor, la atención al detalle y una conexión humana genuina pueden transformar la relación entre una organización y sus clientes.</p>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <div class="carousel" data-carousel>
+      <div class="carousel-nav">
+        <button class="carousel-btn" data-dir="-1" aria-label="Servicio anterior">
+          <img src="assets/icons/carousel-prev.svg" alt="">
+        </button>
+        <p class="carousel-page"><span data-current>1</span>/<span data-total>3</span></p>
+        <button class="carousel-btn" data-dir="1" aria-label="Servicio siguiente">
+          <img src="assets/icons/carousel-next.svg" alt="">
+        </button>
+      </div>
+
+      <div class="carousel-track" data-track>
+        <article class="service-card" data-pattern="patron-04">
+          <div class="service-stripe"><img src="assets/images/patron-04.png" alt=""></div>
+          <div class="service-body">
+            <div class="service-head">
+              <p class="eyebrow">servicios</p>
+              <h3 class="service-title">Rediseño de experiencia y Client Journey Mapping</h3>
+              <p class="service-page">[1/3]</p>
+            </div>
+            <p class="service-text">Proceso de consultoría para entender y rediseñar cómo experimenta el cliente su relación con la organización, desde el primer contacto hasta el cierre del servicio y la continuidad de la relación. Incluye auditoría integral, sesión de trabajo con el equipo y entrega de recomendaciones concretas y accionables.</p>
+          </div>
+        </article>
+
+        <article class="service-card" data-pattern="patron-05">
+          <div class="service-stripe"><img src="assets/images/patron-05.png" alt=""></div>
+          <div class="service-body">
+            <div class="service-head">
+              <p class="eyebrow">servicios</p>
+              <h3 class="service-title">Talleres de hospitalidad y servicio</h3>
+              <p class="service-page">[2/3]</p>
+            </div>
+            <p class="service-text">Talleres diseñados a la medida del equipo y del ADN de la organización. Los temas y el enfoque se definen según las necesidades específicas del cliente, con formatos tanto para líderes y equipos directivos, como para equipos de atención al cliente.</p>
+          </div>
+        </article>
+
+        <article class="service-card" data-pattern="patron-03">
+          <div class="service-stripe"><img src="assets/images/patron-03.png" alt=""></div>
+          <div class="service-body">
+            <div class="service-head">
+              <p class="eyebrow">servicios</p>
+              <h3 class="service-title">Acompañamiento continuo en Client Experience</h3>
+              <p class="service-page">[3/3]</p>
+            </div>
+            <p class="service-text">Asesoría mensual para incorporar una mirada externa y especializada de Client Experience en el día a día de la organización: eventos, reuniones, comunicaciones y cualquier otro punto de contacto relevante con el cliente.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps" id="tu-proyecto">
+    <div class="steps-heading">
+      <p class="eyebrow">Tu proyecto</p>
+      <span class="hr"></span>
+    </div>
+
+    <div class="step">
+      <span class="step-num">01</span>
+      <h4 class="step-title">Agenda una conversación:</h4>
+      <p class="step-text">Hablamos sobre tu organización y lo que quieres transformar.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h4 class="step-title">Recibe una propuesta hecha a la medida:</h4>
+      <p class="step-text">Definimos el alcance y todos los detalles</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h4 class="step-title">Comenzamos el proyecto:</h4>
+      <p class="step-text">Iniciamos con el equipo y las prioridades alineadas</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h2 class="contact-title tracking-wide">Conversemos sobre la experiencia que quieres crear</h2>
+
+    <form class="contact-form" id="contact-form" novalidate>
+      <div class="form-row">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="telefono">Número de teléfono</label>
+        <div class="phone-field">
+          <span class="phone-prefix">+57</span>
+          <input type="tel" id="telefono" name="telefono" required autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="organizacion">Organización (Opcional)</label>
+        <input type="text" id="organizacion" name="organizacion" autocomplete="organization">
+      </div>
+
+      <p class="form-disclaimer">By submitting this form, you agree to receive marketing emails from Dripos. Please review our Privacy Policy and our relevant Terms of Service.</p>
+
+      <button type="submit" class="btn btn--form">
+        <span>Enviar</span>
+        <img src="assets/icons/arrow.svg" alt="" class="btn-arrow">
+      </button>
+
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="contact-closing">
+      <h3 class="tracking-wide">Nada en Estanza es al azar</h3>
+      <p>trabajemos juntos en tu próximo proyecto</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p class="eyebrow">contacto</p>
+    <a class="footer-email" href="mailto:hola@estanzacx.com">hola@estanzacx.com</a>
+  </footer>
+
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
