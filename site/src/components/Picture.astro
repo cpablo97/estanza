@@ -1,0 +1,15 @@
+---
+import type { Img, Locale } from "../lib/types";
+import { loc } from "../lib/loc";
+import { sources } from "../lib/image";
+
+interface Props { img: Img; locale: Locale; widths?: number[]; sizes: string; class?: string; eager?: boolean; style?: string; [k: string]: unknown }
+const { img, locale, widths, sizes, class: cls, eager = false, style, ...rest } = Astro.props;
+const s = sources(img, widths);
+---
+{s && (
+  <picture class={cls} style={style} {...rest}>
+    {s.srcset && <source type="image/webp" srcset={s.srcset} sizes={sizes} />}
+    <img src={s.fallback} width={s.width} height={s.height} alt={loc(img.alt, locale) ?? ""} loading={eager ? "eager" : "lazy"} fetchpriority={eager ? "high" : undefined} decoding="async" />
+  </picture>
+)}

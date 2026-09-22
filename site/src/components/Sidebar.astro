@@ -1,0 +1,51 @@
+---
+import type { Content, Locale } from "../lib/types";
+import { loc, anchorOf } from "../lib/loc";
+import { buildMenu } from "../lib/menu";
+import LogoMark from "./svg/LogoMark.astro";
+import LogoSubtitle from "./svg/LogoSubtitle.astro";
+import ArrowGlyph from "./svg/ArrowGlyph.astro";
+
+interface Props { content: Content; locale: Locale }
+const { content, locale } = Astro.props;
+const { settings, landing } = content;
+const groups = buildMenu(landing.sections, settings, locale);
+const first = anchorOf(landing.sections[0]);
+const total = String(landing.sections.length).padStart(2, "0");
+const L = (k: string) => loc(settings.labels[k], locale);
+---
+<nav class="sidebar" id="sidebar" aria-label={L("menu")}>
+  <a class="logo" href={`#${first}`} aria-label={L("logo")}>
+    <LogoMark />
+    <LogoSubtitle />
+  </a>
+
+  <div class="nav-groups">
+    <div class="lang-switch" role="group" aria-label={L("language")}>
+      <a class="lang-btn" href="/" lang="es" hreflang="es" aria-current={locale === "es" ? "page" : undefined}>español</a>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <a class="lang-btn" href="/en/" lang="en" hreflang="en" aria-current={locale === "en" ? "page" : undefined}>english</a>
+    </div>
+
+    {groups.map((g) => (
+      <div class="nav-group" data-rooms={g.rooms.join(" ")}>
+        <p class="nav-numeral" aria-hidden="true">{g.numeral}</p>
+        <div class="nav-links">
+          <p class="nav-label">{g.label}</p>
+          {g.links.map((l) =>
+            l.inline ? (
+              <a class="nav-link nav-link--inline" href={l.href} target={l.external ? "_blank" : undefined} rel={l.external ? "noopener" : undefined}>{l.label} <ArrowGlyph /></a>
+            ) : (
+              <a class="nav-link" href={l.href} data-slide={l.slide !== undefined ? String(l.slide) : undefined}>{l.label}</a>
+            )
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="sidebar-foot" aria-live="polite">
+    <p class="sidebar-room"><span data-room-label>{loc(landing.sections[0].roomLabel, locale)}</span></p>
+    <p class="sidebar-counter"><span data-room-current>01</span> / <span data-room-total>{total}</span></p>
+  </div>
+</nav>

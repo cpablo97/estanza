@@ -1,0 +1,25 @@
+---
+import type { Locale, TextImageSection } from "../../lib/types";
+import { loc, paragraphs } from "../../lib/loc";
+import Room from "../Room.astro";
+import Picture from "../Picture.astro";
+
+interface Props { section: TextImageSection; locale: Locale; index: number }
+const { section, locale, index } = Astro.props;
+const left = section.imageSide === "left";
+const id = `${section._key}-title`;
+const ps = paragraphs(section.body, locale);
+---
+<Room section={section} locale={locale} index={index} kind={left ? "about room--behind" : "about"} titleId={id}>
+  <div class="about-grid">
+    {left && section.image && <Picture img={section.image} locale={locale} class="about-photo" widths={[300, 600]} sizes="(max-width: 599px) 240px, (max-width: 899px) 220px, 24vw" data-reveal style="--i: 0;" />}
+    <div class="about-head" data-reveal style={`--i: ${left ? 1 : 0};`}>
+      {section.eyebrow && <p class="eyebrow">{loc(section.eyebrow, locale)}</p>}
+      <h2 class="section-title" id={id}>{loc(section.title, locale)}</h2>
+    </div>
+    <div class="prose" data-reveal style={`--i: ${left ? 2 : 1};`}>
+      {ps.map((p) => <p set:html={p} />)}
+    </div>
+    {!left && section.image && <Picture img={section.image} locale={locale} class="about-photo" widths={[300, 600]} sizes="(max-width: 599px) 240px, (max-width: 899px) 220px, 24vw" data-reveal style="--i: 2;" />}
+  </div>
+</Room>

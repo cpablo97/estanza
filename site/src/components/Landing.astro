@@ -1,0 +1,30 @@
+---
+import type { Content, Locale } from "../lib/types";
+import Base from "../layouts/Base.astro";
+import Hero from "./sections/Hero.astro";
+import TextImage from "./sections/TextImage.astro";
+import Services from "./sections/Services.astro";
+import Steps from "./sections/Steps.astro";
+import Contact from "./sections/Contact.astro";
+import Closing from "./sections/Closing.astro";
+import { getContent } from "../lib/content";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const content: Content = await getContent();
+const { settings, landing } = content;
+---
+<Base content={content} locale={locale}>
+  {landing.sections.map((s, i) => {
+    switch (s._type) {
+      case "heroSection": return <Hero section={s} locale={locale} index={i} />;
+      case "textImageSection":
+      case "genericSection": return <TextImage section={s} locale={locale} index={i} />;
+      case "servicesSection": return <Services section={s} locale={locale} index={i} settings={settings} />;
+      case "stepsSection": return <Steps section={s} locale={locale} index={i} />;
+      case "contactSection": return <Contact section={s} locale={locale} index={i} settings={settings} />;
+      case "closingSection": return <Closing section={s} locale={locale} index={i} settings={settings} />;
+      default: return null;
+    }
+  })}
+</Base>

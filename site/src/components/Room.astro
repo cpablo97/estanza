@@ -1,0 +1,22 @@
+---
+import type { Locale, Section } from "../lib/types";
+import { anchorOf, loc } from "../lib/loc";
+import { backgroundOf, themeFor } from "../lib/theme";
+
+interface Props { section: Section; locale: Locale; index: number; kind: string; titleId?: string }
+const { section, locale, index, kind, titleId } = Astro.props;
+const bg = backgroundOf(section);
+---
+<section
+  class:list={["room", `room--${kind}`, { "is-active": index === 0 }]}
+  id={anchorOf(section)}
+  data-bg={bg}
+  data-theme={themeFor(bg)}
+  data-label={loc(section.roomLabel, locale)}
+  tabindex="-1"
+  aria-labelledby={titleId}
+>
+  <div class="room-scroll"><div class="room-inner">
+    <slot />
+  </div></div>
+</section>

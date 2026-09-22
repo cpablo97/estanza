@@ -1,0 +1,23 @@
+---
+import type { ClosingSection, Locale, Settings } from "../../lib/types";
+import { loc } from "../../lib/loc";
+import Room from "../Room.astro";
+
+interface Props { section: ClosingSection; locale: Locale; index: number; settings: Settings }
+const { section, locale, index, settings } = Astro.props;
+const id = `${section._key}-title`;
+const year = new Date().getFullYear();
+---
+<Room section={section} locale={locale} index={index} kind="closing" titleId={id}>
+  <div class="closing">
+    {section.eyebrow && <p class="eyebrow" data-reveal style="--i: 0;">{loc(section.eyebrow, locale)}</p>}
+    <h2 class="display closing-title" id={id} data-reveal style="--i: 1;">{loc(section.title, locale)}</h2>
+    {section.line && <p class="lede" data-reveal style="--i: 2;">{loc(section.line, locale)}</p>}
+    <a class="closing-email" href={`mailto:${settings.email}`} data-reveal style="--i: 3;">{settings.email}</a>
+    <div class="closing-meta" data-reveal style="--i: 4;">
+      {section.showLinkedin && settings.linkedin && <a href={settings.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
+      {section.showLinkedin && settings.linkedin && <span aria-hidden="true">·</span>}
+      <span>© <span data-year>{year}</span> {settings.copyrightName || "Estanza"}</span>
+    </div>
+  </div>
+</Room>

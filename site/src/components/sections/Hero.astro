@@ -1,0 +1,24 @@
+---
+import type { HeroSection, Locale } from "../../lib/types";
+import { loc } from "../../lib/loc";
+import Room from "../Room.astro";
+import Picture from "../Picture.astro";
+import ArrowBtn from "../svg/ArrowBtn.astro";
+
+interface Props { section: HeroSection; locale: Locale; index: number }
+const { section, locale, index } = Astro.props;
+---
+<Room section={section} locale={locale} index={index} kind="hero" titleId="hero-title">
+  <div class="hero-copy">
+    <h1 class="display hero-title" id="hero-title" lang="en" data-reveal style="--i: 0;">{section.title}</h1>
+    <a class="btn" href={`#${section.ctaTarget}`} data-reveal style="--i: 1;">
+      <span>{loc(section.ctaLabel, locale)}</span>
+      <ArrowBtn />
+    </a>
+  </div>
+  <div class="hero-photos">
+    {section.photos.map((p, i) => (
+      <Picture img={p} locale={locale} class="hero-photo" sizes="(max-width: 599px) 50vw, (max-width: 899px) 28vw, 17vw" eager={i === 0} data-reveal style={`--i: ${i};`} />
+    ))}
+  </div>
+</Room>

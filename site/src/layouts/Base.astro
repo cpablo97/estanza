@@ -1,0 +1,62 @@
+---
+import type { Content, Locale } from "../lib/types";
+import { loc } from "../lib/loc";
+import { sources } from "../lib/image";
+import Sidebar from "../components/Sidebar.astro";
+
+interface Props { content: Content; locale: Locale }
+const { content, locale } = Astro.props;
+const { settings } = content;
+const siteUrl = (settings.siteUrl || Astro.site?.toString() || "https://estanzacx.com").replace(/\/$/, "");
+const path = locale === "en" ? "/en/" : "/";
+const og = sources(settings.ogImage, [1200]);
+const description = loc(settings.metaDescription, locale) ?? "";
+---
+<!DOCTYPE html>
+<html lang={locale}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{settings.siteTitle}</title>
+<meta name="description" content={description}>
+<meta name="theme-color" content="#dfd8cb">
+<link rel="canonical" href={`${siteUrl}${path}`}>
+<link rel="alternate" hreflang="es" href={`${siteUrl}/`}>
+<link rel="alternate" hreflang="en" href={`${siteUrl}/en/`}>
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}/`}>
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content={locale === "en" ? "en_US" : "es_CO"}>
+<meta property="og:site_name" content={settings.copyrightName || "Estanza"}>
+<meta property="og:title" content={settings.siteTitle}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={`${siteUrl}${path}`}>
+{og && <meta property="og:image" content={og.fallback.startsWith("http") ? og.fallback : `${siteUrl}${og.fallback}`}>}
+{og && <meta property="og:image:width" content={String(og.width)}>}
+{og && <meta property="og:image:height" content={String(og.height)}>}
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="/assets/fonts/AdobeArabic-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/styles.css">
+<script defer src="/js/pager.js"></script>
+<script defer src="/js/main.js"></script>
+</head>
+<body data-theme="light">
+
+<button class="hamburger" id="hamburger" aria-label={loc(settings.labels.openMenu, locale)} data-label-open={loc(settings.labels.openMenu, locale)} data-label-close={loc(settings.labels.closeMenu, locale)} aria-expanded="false" aria-controls="sidebar">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="overlay"></div>
+
+<Sidebar content={content} locale={locale} />
+
+<main class="stage" id="stage">
+  <div class="scroll" id="scroller" style="--section: 0;">
+    <slot />
+  </div>
+</main>
+
+</body>
+</html>

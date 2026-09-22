@@ -1,0 +1,24 @@
+---
+import type { Locale, StepsSection } from "../../lib/types";
+import { loc } from "../../lib/loc";
+import Room from "../Room.astro";
+
+interface Props { section: StepsSection; locale: Locale; index: number }
+const { section, locale, index } = Astro.props;
+const id = `${section._key}-title`;
+---
+<Room section={section} locale={locale} index={index} kind="steps" titleId={id}>
+  <div class="steps-head" data-reveal style="--i: 0;">
+    {section.eyebrow && <p class="eyebrow">{loc(section.eyebrow, locale)}</p>}
+    <h2 class="section-title" id={id}>{loc(section.title, locale)}</h2>
+  </div>
+  <ol class="steps-list" style="list-style: none; margin: 0; padding: 0;">
+    {section.steps.map((st, i) => (
+      <li class="step" data-reveal style={`--i: ${i + 1};`}>
+        <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+        <h3 class="step-title">{loc(st.title, locale)}</h3>
+        <p class="step-text">{loc(st.text, locale)}</p>
+      </li>
+    ))}
+  </ol>
+</Room>

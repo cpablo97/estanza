@@ -1,0 +1,46 @@
+---
+import type { Locale, ServicesSection, Settings } from "../../lib/types";
+import { loc } from "../../lib/loc";
+import Room from "../Room.astro";
+import Picture from "../Picture.astro";
+import ArrowPrev from "../svg/ArrowPrev.astro";
+import ArrowNext from "../svg/ArrowNext.astro";
+
+interface Props { section: ServicesSection; locale: Locale; index: number; settings: Settings }
+const { section, locale, index, settings } = Astro.props;
+const id = `${section._key}-title`;
+const L = (k: string) => loc(settings.labels[k], locale);
+const n = section.items.length;
+---
+<Room section={section} locale={locale} index={index} kind="services" titleId={id}>
+  <div class="carousel" data-carousel role="region" aria-roledescription={L("carousel")} aria-labelledby={id}>
+    <div class="services-head" data-reveal style="--i: 0;">
+      <div class="about-head">
+        {section.eyebrow && <p class="eyebrow">{loc(section.eyebrow, locale)}</p>}
+        <h2 class="section-title" id={id}>{loc(section.title, locale)}</h2>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" type="button" data-dir="-1" aria-label={L("prevService")}><ArrowPrev /></button>
+        <p class="carousel-page" aria-live="polite"><span data-current>1</span> / <span data-total>{n}</span></p>
+        <button class="carousel-btn" type="button" data-dir="1" aria-label={L("nextService")}><ArrowNext /></button>
+      </div>
+    </div>
+
+    <div class="carousel-viewport" data-reveal style="--i: 1;">
+      <div class="carousel-track" data-track>
+        {section.items.map((it, i) => (
+          <article class:list={["service-card", { "is-current": i === 0 }]} aria-roledescription={L("slide")} aria-label={`${i + 1} / ${n}`}>
+            <div class="service-stripe"><Picture img={it.stripe} locale={locale} widths={[512]} sizes="123px" /></div>
+            <div class="service-body">
+              <div class="service-head">
+                <p class="eyebrow">{String(i + 1).padStart(2, "0")}</p>
+                <h3 class="service-title">{loc(it.title, locale)}</h3>
+              </div>
+              <p class="service-text">{loc(it.body, locale)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</Room>

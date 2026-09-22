@@ -1,0 +1,65 @@
+---
+import type { ContactSection, Locale, Settings } from "../../lib/types";
+import { loc } from "../../lib/loc";
+import Room from "../Room.astro";
+import ArrowBtn from "../svg/ArrowBtn.astro";
+
+interface Props { section: ContactSection; locale: Locale; index: number; settings: Settings }
+const { section, locale, index, settings } = Astro.props;
+const id = `${section._key}-title`;
+const L = (k: string) => loc(settings.labels[k], locale);
+const useNetlify = !settings.formEndpoint;
+---
+<Room section={section} locale={locale} index={index} kind="contact" titleId={id}>
+  <div class="contact-grid">
+    <div class="contact-intro" data-reveal style="--i: 0;">
+      {section.eyebrow && <p class="eyebrow">{loc(section.eyebrow, locale)}</p>}
+      <h2 class="section-title contact-title" id={id}>{loc(section.title, locale)}</h2>
+      {section.lede && <p class="lede">{loc(section.lede, locale)}</p>}
+    </div>
+
+    <form
+      class="contact-form" id="contact-form" name="contacto" method="POST" novalidate data-reveal style="--i: 1;" aria-describedby="form-disclaimer"
+      data-endpoint={settings.formEndpoint || undefined}
+      data-netlify={useNetlify ? "true" : undefined}
+      data-msg-required={L("statusRequired")} data-msg-sending={L("statusSending")} data-msg-success={L("statusSuccess")} data-msg-logged={L("statusLogged")} data-msg-error={L("statusError")}
+    >
+      {useNetlify && <input type="hidden" name="form-name" value="contacto" />}
+      <div class="form-row">
+        <div class="field">
+          <label for="nombre">{L("firstName")}</label>
+          <input type="text" id="nombre" name="nombre" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="apellido">{L("lastName")}</label>
+          <input type="text" id="apellido" name="apellido" required autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">{L("email")}</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="telefono">{L("phone")}</label>
+        <div class="phone-field">
+          <input class="phone-prefix" type="tel" id="prefijo" name="prefijo" value={settings.phonePrefixDefault || "+57"} autocomplete="tel-country-code" aria-label={L("phonePrefix")} inputmode="tel">
+          <input type="tel" id="telefono" name="telefono" required autocomplete="tel-national" inputmode="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="organizacion">{L("organisation")}</label>
+        <input type="text" id="organizacion" name="organizacion" autocomplete="organization">
+      </div>
+
+      <p class="form-disclaimer italic-note" id="form-disclaimer">{loc(section.disclaimer, locale)}</p>
+
+      <div class="form-actions">
+        <button type="submit" class="btn">
+          <span>{L("send")}</span>
+          <ArrowBtn />
+        </button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</Room>

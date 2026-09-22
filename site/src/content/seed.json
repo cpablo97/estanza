@@ -1,0 +1,526 @@
+{
+  "settings": {
+    "_type": "settings",
+    "_id": "settings",
+    "siteTitle": "Estanza — Turning clients into guests",
+    "metaDescription": {
+      "es": "Estanza es una firma de consultoría en Client Experience que traduce los principios de la hospitalidad de alto nivel al mundo de los servicios profesionales.",
+      "en": "Estanza is a Client Experience consultancy that translates the principles of high-end hospitality to the world of professional services."
+    },
+    "siteUrl": "https://estanzacx.com",
+    "email": "hola@estanzacx.com",
+    "linkedin": "https://www.linkedin.com",
+    "phonePrefixDefault": "+57",
+    "copyrightName": "Estanza",
+    "formEndpoint": "",
+    "ogImage": {
+      "local": {
+        "webp": [],
+        "fallback": "/assets/og.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "alt": {
+        "es": "Estanza",
+        "en": "Estanza"
+      }
+    },
+    "labels": {
+      "menu": {
+        "es": "Menú principal",
+        "en": "Main menu"
+      },
+      "openMenu": {
+        "es": "Abrir menú",
+        "en": "Open menu"
+      },
+      "closeMenu": {
+        "es": "Cerrar menú",
+        "en": "Close menu"
+      },
+      "language": {
+        "es": "Idioma",
+        "en": "Language"
+      },
+      "logo": {
+        "es": "Estanza — ir al inicio",
+        "en": "Estanza — go to top"
+      },
+      "prevService": {
+        "es": "Servicio anterior",
+        "en": "Previous service"
+      },
+      "nextService": {
+        "es": "Servicio siguiente",
+        "en": "Next service"
+      },
+      "carousel": {
+        "es": "carrusel",
+        "en": "carousel"
+      },
+      "slide": {
+        "es": "diapositiva",
+        "en": "slide"
+      },
+      "firstName": {
+        "es": "Nombre",
+        "en": "First name"
+      },
+      "lastName": {
+        "es": "Apellido",
+        "en": "Last name"
+      },
+      "email": {
+        "es": "Correo electrónico",
+        "en": "Email"
+      },
+      "phone": {
+        "es": "Número de teléfono",
+        "en": "Phone number"
+      },
+      "phonePrefix": {
+        "es": "Indicativo del país",
+        "en": "Country code"
+      },
+      "organisation": {
+        "es": "Organización (opcional)",
+        "en": "Organisation (optional)"
+      },
+      "send": {
+        "es": "Enviar",
+        "en": "Send"
+      },
+      "statusRequired": {
+        "es": "Por favor completa los campos requeridos.",
+        "en": "Please complete the required fields."
+      },
+      "statusSending": {
+        "es": "Enviando…",
+        "en": "Sending…"
+      },
+      "statusSuccess": {
+        "es": "Gracias. Te escribiremos muy pronto.",
+        "en": "Thank you. We'll be in touch very soon."
+      },
+      "statusLogged": {
+        "es": "Gracias. Tu mensaje quedó registrado; también puedes escribirnos a hola@estanzacx.com.",
+        "en": "Thank you. Your message was recorded; you can also write to us at hola@estanzacx.com."
+      },
+      "statusError": {
+        "es": "No pudimos enviar el formulario. Escríbenos a hola@estanzacx.com.",
+        "en": "We couldn't send the form. Please write to hola@estanzacx.com."
+      }
+    }
+  },
+  "landing": {
+    "_type": "landing",
+    "_id": "landing",
+    "sections": [
+      {
+        "_type": "heroSection",
+        "_key": "hero",
+        "anchor": "inicio",
+        "menuGroup": {
+          "es": "estanza",
+          "en": "estanza"
+        },
+        "menuLabel": null,
+        "roomLabel": {
+          "es": "inicio",
+          "en": "home"
+        },
+        "background": "#dfd8cb",
+        "title": "Turning clients into guests",
+        "ctaLabel": {
+          "es": "Conversemos",
+          "en": "Let's talk"
+        },
+        "ctaTarget": "contacto",
+        "photos": [
+          {
+            "local": {
+              "webp": [
+                "/assets/images/hero-1-480.webp",
+                "/assets/images/hero-1-960.webp"
+              ],
+              "fallback": "/assets/images/hero-1-960.jpg",
+              "width": 934,
+              "height": 1478
+            },
+            "alt": {
+              "es": "Reunión de equipo en una sala de oficina",
+              "en": "Reunión de equipo en una sala de oficina"
+            }
+          },
+          {
+            "local": {
+              "webp": [
+                "/assets/images/hero-2-480.webp",
+                "/assets/images/hero-2-960.webp"
+              ],
+              "fallback": "/assets/images/hero-2-960.jpg",
+              "width": 934,
+              "height": 1486
+            },
+            "alt": {
+              "es": "Equipo de Estanza conversando en la oficina",
+              "en": "Equipo de Estanza conversando en la oficina"
+            }
+          },
+          {
+            "local": {
+              "webp": [
+                "/assets/images/hero-3-480.webp",
+                "/assets/images/hero-3-960.webp"
+              ],
+              "fallback": "/assets/images/hero-3-960.jpg",
+              "width": 930,
+              "height": 1480
+            },
+            "alt": {
+              "es": "Detalle de manos trabajando",
+              "en": "Detalle de manos trabajando"
+            }
+          }
+        ]
+      },
+      {
+        "_type": "textImageSection",
+        "_key": "sobre",
+        "anchor": "sobre-estanza",
+        "menuGroup": {
+          "es": "estanza",
+          "en": "estanza"
+        },
+        "menuLabel": {
+          "es": "Sobre Estanza",
+          "en": "About Estanza"
+        },
+        "roomLabel": {
+          "es": "sobre estanza",
+          "en": "about estanza"
+        },
+        "background": "#dfd8cb",
+        "eyebrow": {
+          "es": "estanza",
+          "en": "estanza"
+        },
+        "title": {
+          "es": "Sobre Estanza",
+          "en": "About Estanza"
+        },
+        "imageSide": "right",
+        "body": {
+          "es": [
+            "Estanza es una firma de consultoría en Client Experience que traduce los principios de la hospitalidad de alto nivel al mundo de los servicios profesionales y a organizaciones que quieren transformar la relación con sus clientes.",
+            "Diseñamos experiencias y flujos de trabajo en los que el cliente se sienta reconocido, cuidado y recordado en cada interacción. Creemos que la verdadera hospitalidad comienza al ver realmente al otro, entenderlo y responder con creatividad e intención. Cuando esto sucede, la experiencia deja de ser un detalle y se convierte en una ventaja competitiva difícil de replicar."
+          ],
+          "en": [
+            "Estanza is a Client Experience consultancy that translates the principles of high-end hospitality to the world of professional services and to organisations that want to transform their relationship with their clients.",
+            "We design experiences and workflows in which the client feels recognised, cared for and remembered at every interaction. We believe true hospitality begins with really seeing the other person, understanding them and responding with creativity and intention. When that happens, the experience stops being a detail and becomes a competitive advantage that is hard to replicate."
+          ]
+        },
+        "image": {
+          "local": {
+            "webp": [
+              "/assets/images/sobre-estanza-300.webp",
+              "/assets/images/sobre-estanza-600.webp"
+            ],
+            "fallback": "/assets/images/sobre-estanza-600.jpg",
+            "width": 674,
+            "height": 762
+          },
+          "alt": {
+            "es": "Persona trabajando en Estanza",
+            "en": "Persona trabajando en Estanza"
+          }
+        }
+      },
+      {
+        "_type": "textImageSection",
+        "_key": "detras",
+        "anchor": "detras-de-estanza",
+        "menuGroup": {
+          "es": "estanza",
+          "en": "estanza"
+        },
+        "menuLabel": {
+          "es": "Detrás de Estanza",
+          "en": "Behind Estanza"
+        },
+        "roomLabel": {
+          "es": "detrás de estanza",
+          "en": "behind estanza"
+        },
+        "background": "#dfd8cb",
+        "eyebrow": {
+          "es": "fundadora",
+          "en": "founder"
+        },
+        "title": {
+          "es": "Detrás de Estanza",
+          "en": "Behind Estanza"
+        },
+        "imageSide": "left",
+        "body": {
+          "es": [
+            "Laura Dueri es abogada, consultora en Client Experience y cuenta con un MBA en Global Hospitality Management de Les Roches Switzerland. Su trayectoria le ha permitido entender cómo el rigor, la atención al detalle y una conexión humana genuina pueden transformar la relación entre una organización y sus clientes."
+          ],
+          "en": [
+            "Laura Dueri is a lawyer and Client Experience consultant with an MBA in Global Hospitality Management from Les Roches Switzerland. Her career has shown her how rigour, attention to detail and genuine human connection can transform the relationship between an organisation and its clients."
+          ]
+        },
+        "image": {
+          "local": {
+            "webp": [
+              "/assets/images/laura-dueri-300.webp",
+              "/assets/images/laura-dueri-600.webp"
+            ],
+            "fallback": "/assets/images/laura-dueri-600.jpg",
+            "width": 842,
+            "height": 1263
+          },
+          "alt": {
+            "es": "Laura Dueri, fundadora de Estanza",
+            "en": "Laura Dueri, fundadora de Estanza"
+          }
+        }
+      },
+      {
+        "_type": "servicesSection",
+        "_key": "servicios",
+        "anchor": "servicios",
+        "menuGroup": {
+          "es": "servicios",
+          "en": "services"
+        },
+        "menuLabel": null,
+        "roomLabel": {
+          "es": "servicios",
+          "en": "services"
+        },
+        "background": "#d3cbbc",
+        "eyebrow": {
+          "es": "servicios",
+          "en": "services"
+        },
+        "title": {
+          "es": "Lo que hacemos",
+          "en": "What we do"
+        },
+        "items": [
+          {
+            "_key": "s1",
+            "menuLabel": {
+              "es": "Rediseño de experiencia",
+              "en": "Experience redesign"
+            },
+            "title": {
+              "es": "Rediseño de experiencia y Client Journey Mapping",
+              "en": "Experience redesign and Client Journey Mapping"
+            },
+            "body": {
+              "es": "Proceso de consultoría para entender y rediseñar cómo experimenta el cliente su relación con la organización, desde el primer contacto hasta el cierre del servicio y la continuidad de la relación. Incluye auditoría integral, sesión de trabajo con el equipo y entrega de recomendaciones concretas y accionables.",
+              "en": "A consulting process to understand and redesign how the client experiences their relationship with the organisation, from first contact to the close of the service and the continuity of the relationship. It includes a comprehensive audit, a working session with the team and concrete, actionable recommendations."
+            },
+            "stripe": {
+              "local": {
+                "webp": [
+                  "/assets/images/patron-04-512.webp"
+                ],
+                "fallback": "/assets/images/patron-04-512.webp",
+                "width": 512,
+                "height": 512
+              },
+              "alt": {
+                "es": "",
+                "en": ""
+              }
+            }
+          },
+          {
+            "_key": "s2",
+            "menuLabel": {
+              "es": "Talleres",
+              "en": "Workshops"
+            },
+            "title": {
+              "es": "Talleres de hospitalidad y servicio",
+              "en": "Hospitality and service workshops"
+            },
+            "body": {
+              "es": "Talleres diseñados a la medida del equipo y del ADN de la organización. Los temas y el enfoque se definen según las necesidades específicas del cliente, con formatos tanto para líderes y equipos directivos como para equipos de atención al cliente.",
+              "en": "Workshops tailored to the team and to the organisation's DNA. Topics and approach are defined around the client's specific needs, with formats for leaders and executive teams as well as for customer-facing teams."
+            },
+            "stripe": {
+              "local": {
+                "webp": [
+                  "/assets/images/patron-05-512.webp"
+                ],
+                "fallback": "/assets/images/patron-05-512.webp",
+                "width": 512,
+                "height": 512
+              },
+              "alt": {
+                "es": "",
+                "en": ""
+              }
+            }
+          },
+          {
+            "_key": "s3",
+            "menuLabel": {
+              "es": "Acompañamiento",
+              "en": "Ongoing advisory"
+            },
+            "title": {
+              "es": "Acompañamiento continuo en Client Experience",
+              "en": "Ongoing Client Experience advisory"
+            },
+            "body": {
+              "es": "Asesoría mensual para incorporar una mirada externa y especializada de Client Experience en el día a día de la organización: eventos, reuniones, comunicaciones y cualquier otro punto de contacto relevante con el cliente.",
+              "en": "Monthly advisory that brings an external, specialised Client Experience perspective into the organisation's day to day: events, meetings, communications and any other relevant point of contact with the client."
+            },
+            "stripe": {
+              "local": {
+                "webp": [
+                  "/assets/images/patron-03-512.webp"
+                ],
+                "fallback": "/assets/images/patron-03-512.webp",
+                "width": 512,
+                "height": 512
+              },
+              "alt": {
+                "es": "",
+                "en": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "_type": "stepsSection",
+        "_key": "proyecto",
+        "anchor": "tu-proyecto",
+        "menuGroup": {
+          "es": "tu proyecto",
+          "en": "your project"
+        },
+        "menuLabel": {
+          "es": "Cómo comenzamos",
+          "en": "How we begin"
+        },
+        "roomLabel": {
+          "es": "tu proyecto",
+          "en": "your project"
+        },
+        "background": "#dfd8cb",
+        "eyebrow": {
+          "es": "tu proyecto",
+          "en": "your project"
+        },
+        "title": {
+          "es": "Cómo comenzamos",
+          "en": "How we begin"
+        },
+        "steps": [
+          {
+            "_key": "p1",
+            "title": {
+              "es": "Agenda una conversación",
+              "en": "Book a conversation"
+            },
+            "text": {
+              "es": "Hablamos sobre tu organización y lo que quieres transformar.",
+              "en": "We talk about your organisation and what you want to transform."
+            }
+          },
+          {
+            "_key": "p2",
+            "title": {
+              "es": "Recibe una propuesta hecha a la medida",
+              "en": "Receive a tailored proposal"
+            },
+            "text": {
+              "es": "Definimos el alcance y todos los detalles.",
+              "en": "We define the scope and every detail."
+            }
+          },
+          {
+            "_key": "p3",
+            "title": {
+              "es": "Comenzamos el proyecto",
+              "en": "We start the project"
+            },
+            "text": {
+              "es": "Iniciamos con el equipo y las prioridades alineadas.",
+              "en": "We begin with the team and priorities aligned."
+            }
+          }
+        ]
+      },
+      {
+        "_type": "contactSection",
+        "_key": "contacto",
+        "anchor": "contacto",
+        "menuGroup": {
+          "es": "contacto",
+          "en": "contact"
+        },
+        "menuLabel": {
+          "es": "Ponte en contacto",
+          "en": "Get in touch"
+        },
+        "roomLabel": {
+          "es": "contacto",
+          "en": "contact"
+        },
+        "background": "#431919",
+        "eyebrow": {
+          "es": "contacto",
+          "en": "contact"
+        },
+        "title": {
+          "es": "Conversemos sobre la experiencia que quieres crear",
+          "en": "Let's talk about the experience you want to create"
+        },
+        "lede": {
+          "es": "Cuéntanos sobre tu organización y te escribimos para agendar una primera conversación.",
+          "en": "Tell us about your organisation and we'll write to schedule a first conversation."
+        },
+        "disclaimer": {
+          "es": "Al enviar este formulario aceptas que Estanza te contacte por correo electrónico o teléfono para responder a tu solicitud. No compartimos tus datos con terceros.",
+          "en": "By submitting this form you agree that Estanza may contact you by email or phone to respond to your request. We do not share your data with third parties."
+        }
+      },
+      {
+        "_type": "closingSection",
+        "_key": "cierre",
+        "anchor": "cierre",
+        "menuGroup": {
+          "es": "contacto",
+          "en": "contact"
+        },
+        "menuLabel": null,
+        "roomLabel": {
+          "es": "cierre",
+          "en": "closing"
+        },
+        "background": "#684433",
+        "eyebrow": {
+          "es": "estanza",
+          "en": "estanza"
+        },
+        "title": {
+          "es": "Nada en Estanza es al azar",
+          "en": "Nothing at Estanza is left to chance"
+        },
+        "line": {
+          "es": "Trabajemos juntos en tu próximo proyecto.",
+          "en": "Let's work together on your next project."
+        },
+        "showLinkedin": true
+      }
+    ]
+  }
+}
