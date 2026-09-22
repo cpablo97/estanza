@@ -29,6 +29,35 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   /* ----------------------------------------------------------
+     Language: Spanish is the source; English comes from js/i18n.js.
+     Elements are matched by their original Spanish text.
+     ---------------------------------------------------------- */
+  const DICT = (window.ESTANZA_I18N && window.ESTANZA_I18N.en) || {};
+  let lang = "es";
+  const t = (es) => (lang === "en" && DICT[es]) || es;
+
+  const translatable = $$(".nav-label, .nav-link, .eyebrow, h1, h2, h3, p, label, .btn span")
+    .filter((el) => el.children.length === 0) // text-only nodes; keeps spans like the room counter intact
+    .map((el) => ({ el, es: el.textContent.trim() }))
+    .filter(({ es }) => es && Object.prototype.hasOwnProperty.call(DICT, es));
+  const ariaTranslatable = $$("[aria-label]")
+    .map((el) => ({ el, es: el.getAttribute("aria-label") }))
+    .filter(({ es }) => Object.prototype.hasOwnProperty.call(DICT, es));
+  rooms.forEach((r) => { r.dataset.labelEs = r.dataset.label; });
+
+  function setLang(next) {
+    lang = next === "en" ? "en" : "es";
+    document.documentElement.lang = lang;
+    translatable.forEach(({ el, es }) => { el.textContent = t(es); });
+    ariaTranslatable.forEach(({ el, es }) => { el.setAttribute("aria-label", t(es)); });
+    rooms.forEach((r) => { r.dataset.label = t(r.dataset.labelEs); });
+    $$(".lang-btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    try { localStorage.setItem("estanza-lang", lang); } catch (e) { /* private mode */ }
+    if (typeof onRoomChange === "function" && rooms[currentRoom]) onRoomChange(currentRoom);
+  }
+  $$(".lang-btn").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+
+  /* ----------------------------------------------------------
      Mobile drawer
      ---------------------------------------------------------- */
   const hamburger = $("#hamburger");
@@ -40,7 +69,7 @@
     sidebar.classList.toggle("is-open", open);
     overlay.classList.toggle("is-open", open);
     hamburger.setAttribute("aria-expanded", String(open));
-    hamburger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    hamburger.setAttribute("aria-label", t(open ? "Cerrar menú" : "Abrir menú"));
     if (mobileMQ.matches) sidebar.inert = !open;
     if (open) $(".nav-link", sidebar)?.focus({ preventScroll: true });
     else if (document.activeElement && sidebar.contains(document.activeElement)) hamburger.focus();
@@ -185,6 +214,10 @@
   pagerMQ.addEventListener("change", sync);
   sync();
 
+  let savedLang = "es";
+  try { savedLang = localStorage.getItem("estanza-lang") || "es"; } catch (e) { /* ignore */ }
+  if (savedLang === "en") setLang("en");
+
   // Sidebar service links: go to the room, then to the slide
   slideLinks.forEach((a) => {
     a.addEventListener("click", () => {
@@ -290,14 +323,14 @@
       const invalid = $$("input:invalid", form);
       if (invalid.length) {
         invalid[0].focus();
-        setStatus("Por favor completa los campos requeridos.", "error");
+        setStatus(t("Por favor completa los campos requeridos."), "error");
         return;
       }
 
       const data = Object.fromEntries(new FormData(form).entries());
       const submit = $('button[type="submit"]', form);
       submit.disabled = true;
-      setStatus("Enviando…");
+      setStatus(t("Enviando…"));
 
       try {
         if (FORM_ENDPOINT) {
@@ -307,15 +340,15 @@
             body: JSON.stringify(data),
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          setStatus("Gracias. Te escribiremos muy pronto.", "success");
+          setStatus(t("Gracias. Te escribiremos muy pronto."), "success");
         } else {
           console.info("Estanza contact form (no endpoint configured):", data);
-          setStatus("Gracias. Tu mensaje quedó registrado; también puedes escribirnos a hola@estanzacx.com.", "success");
+          setStatus(t("Gracias. Tu mensaje quedó registrado; también puedes escribirnos a hola@estanzacx.com."), "success");
         }
         form.reset();
       } catch (err) {
         console.error(err);
-        setStatus("No pudimos enviar el formulario. Escríbenos a hola@estanzacx.com.", "error");
+        setStatus(t("No pudimos enviar el formulario. Escríbenos a hola@estanzacx.com."), "error");
       } finally {
         submit.disabled = false;
       }
