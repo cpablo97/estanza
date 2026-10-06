@@ -5,6 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Public identifiers (also visible in every CDN image URL); values here override the Netlify UI.
+  PUBLIC_SANITY_PROJECT_ID = "5j5yx4z7"
+  PUBLIC_SANITY_DATASET = "production"
 
 # The Sanity webhook (Studio → API → Webhooks) should POST to a Netlify Build Hook
 # on create/update/delete of the "landing" and "settings" documents.
