@@ -2,8 +2,10 @@ import { createClient } from "@sanity/client";
 import type { Content } from "./types";
 import seed from "../content/seed.json";
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID as string | undefined;
-const dataset = (import.meta.env.PUBLIC_SANITY_DATASET as string | undefined) || "production";
+// Tolerate values pasted into a hosting UI with quotes or spaces around them.
+const clean = (v: unknown) => (typeof v === "string" ? v.trim().replace(/^["']|["']$/g, "") : "");
+const projectId = clean(import.meta.env.PUBLIC_SANITY_PROJECT_ID) || undefined;
+const dataset = clean(import.meta.env.PUBLIC_SANITY_DATASET) || "production";
 
 export const sanityConfig = projectId ? { projectId, dataset } : null;
 
