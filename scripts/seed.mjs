@@ -6,13 +6,15 @@
  *
  * Run from the repo root. Requires a token with Editor rights (Studio → API → Tokens).
  */
-import { createClient } from "@sanity/client";
+import { createRequire } from "node:module";
 import { readFile } from "node:fs/promises";
 import { createReadStream } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// Resolve @sanity/client from studio/ (this script has no node_modules of its own).
+const { createClient } = createRequire(path.join(root, "studio/package.json"))("@sanity/client");
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
 const dataset = process.env.SANITY_STUDIO_DATASET || "production";
 const token = process.env.SANITY_WRITE_TOKEN;

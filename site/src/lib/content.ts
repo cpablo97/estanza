@@ -28,7 +28,10 @@ let cache: Promise<Content> | null = null;
 export function getContent(): Promise<Content> {
   if (!cache) {
     cache = (async () => {
-      if (!sanityConfig) return seed as unknown as Content;
+      if (!sanityConfig) {
+        if (process.env.NETLIFY) console.warn("[estanza] PUBLIC_SANITY_PROJECT_ID is not set: building from the local seed, not from Sanity.");
+        return seed as unknown as Content;
+      }
       const client = createClient({ ...sanityConfig, apiVersion: "2025-01-01", useCdn: false });
       const data = await client.fetch<Content>(QUERY);
       if (!data?.landing?.sections?.length) throw new Error("Sanity returned no landing sections; publish the Página document first.");

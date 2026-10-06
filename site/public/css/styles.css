@@ -1043,3 +1043,6 @@ body[data-theme="dark"] {
   .hero-photo img { animation: none; }
   .btn:hover, .nav-link--inline:hover .arrow-glyph, .btn:hover .btn-arrow { transform: none; }
 }
+
+/* Netlify Forms honeypot */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

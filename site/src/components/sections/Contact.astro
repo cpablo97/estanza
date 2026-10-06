@@ -22,9 +22,11 @@ const useNetlify = !settings.formEndpoint;
       class="contact-form" id="contact-form" name="contacto" method="POST" novalidate data-reveal style="--i: 1;" aria-describedby="form-disclaimer"
       data-endpoint={settings.formEndpoint || undefined}
       data-netlify={useNetlify ? "true" : undefined}
+      data-netlify-honeypot={useNetlify ? "bot-field" : undefined}
       data-msg-required={L("statusRequired")} data-msg-sending={L("statusSending")} data-msg-success={L("statusSuccess")} data-msg-logged={L("statusLogged")} data-msg-error={L("statusError")}
     >
       {useNetlify && <input type="hidden" name="form-name" value="contacto" />}
+      {useNetlify && <p class="hp" aria-hidden="true"><label>No llenar: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>}
       <div class="form-row">
         <div class="field">
           <label for="nombre">{L("firstName")}</label>
