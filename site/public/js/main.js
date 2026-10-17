@@ -103,9 +103,10 @@
       if (e.key === "ArrowLeft") { e.preventDefault(); goTo(index - 1); }
     });
 
-    /* On desktop every title sits on one line: all cards share the largest size
-       (up to the CSS size) at which the longest title still fits. Below the
-       1.5rem floor a title is allowed to wrap; the CSS then caps it at two lines. */
+    /* On desktop all cards share one title size: the largest (up to the CSS size)
+       at which the longest title still fits on one line, but never below 2rem so
+       the title keeps its weight against the copy. Below that floor a title is
+       allowed to wrap; the CSS then caps it at two lines. */
     const titles = cards.map((card) => $(".service-title", card)).filter(Boolean);
     const fitMQ = window.matchMedia("(min-width: 900px)");
     function fitTitles() {
@@ -115,7 +116,7 @@
       const base = parseFloat(getComputedStyle(titles[0]).fontSize);
       const scale = Math.min(1, ...titles.map((t) => t.clientWidth / t.scrollWidth));
       track.classList.remove("is-measuring");
-      const floor = 1.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const floor = 2 * parseFloat(getComputedStyle(document.documentElement).fontSize);
       const size = Math.max(floor, Math.floor(base * scale));
       if (size < base) root.style.setProperty("--service-title-fs", `${size}px`);
     }
