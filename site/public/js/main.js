@@ -308,7 +308,9 @@
   if (form) {
     const msg = (k) => form.dataset["msg" + k] || "";
     const endpoint = form.dataset.endpoint || "";
-    const netlify = form.hasAttribute("data-netlify");
+    // Netlify strips data-netlify from the built HTML once it registers the form,
+    // so the backend choice is carried in a separate attribute it leaves alone.
+    const netlify = form.dataset.backend === "netlify";
 
     const consent = $("[data-consent]", form);
     const consentBox = consent && $("input", consent);

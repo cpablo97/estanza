@@ -21,6 +21,7 @@ const useNetlify = !settings.formEndpoint;
     <form
       class="contact-form" id="contact-form" name="contacto" method="POST" novalidate data-reveal style="--i: 1;" aria-describedby="form-disclaimer"
       data-endpoint={settings.formEndpoint || undefined}
+      data-backend={useNetlify ? "netlify" : "endpoint"}
       data-netlify={useNetlify ? "true" : undefined}
       data-netlify-honeypot={useNetlify ? "bot-field" : undefined}
       data-msg-privacy={L("statusPrivacy")} data-msg-required={L("statusRequired")} data-msg-sending={L("statusSending")} data-msg-success={L("statusSuccess")} data-msg-logged={L("statusLogged")} data-msg-error={L("statusError")}
