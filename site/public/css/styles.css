@@ -647,6 +647,7 @@ body[data-theme="dark"] {
   line-height: 1.1; /* the clamp below hides overflow; Adobe Arabic's accents need the extra leading */
   letter-spacing: var(--tracking-title);
   text-transform: uppercase;
+  max-width: 600px;
   text-wrap: balance;
   /* Never more than two lines on tablet and desktop; titles ≈ 50 characters fit. */
   display: -webkit-box;
