@@ -310,13 +310,23 @@
     const endpoint = form.dataset.endpoint || "";
     const netlify = form.hasAttribute("data-netlify");
 
+    const consent = $("[data-consent]", form);
+    const consentBox = consent && $("input", consent);
+    if (consent) consent.addEventListener("animationend", () => consent.classList.remove("is-shake"));
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      // The data-policy box is required; an unchecked box shakes so the miss is visible.
+      if (consentBox && !consentBox.checked) {
+        consent.classList.remove("is-shake");
+        void consent.offsetWidth; // restart the animation on repeated clicks
+        consent.classList.add("is-shake");
+      }
       const invalid = $$("input:invalid", form);
       if (invalid.length) {
         invalid[0].focus();
-        setStatus(msg("Required"), "error");
+        setStatus(msg(invalid[0] === consentBox ? "Privacy" : "Required"), "error");
         return;
       }
 

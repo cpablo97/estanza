@@ -783,6 +783,54 @@ body[data-theme="dark"] {
   max-width: 52ch;
   opacity: 0.85;
 }
+/* Data-policy consent: a custom box so it matches the outlined inputs; the
+   native checkbox stays in the tree for keyboard and screen-reader users. */
+.check {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  column-gap: var(--space-3);
+  max-width: 52ch;
+  cursor: pointer;
+  font-size: var(--fs-small);
+  line-height: var(--lh-tight);
+}
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.check-box {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.05em;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  transition: background-color var(--dur-ui) var(--ease-ui), border-color var(--dur-ui) var(--ease-ui);
+}
+.check-box::after {
+  content: "";
+  width: 5px;
+  height: 10px;
+  margin-top: -2px;
+  border: solid var(--color-ink);
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+  opacity: 0;
+  transition: opacity var(--dur-ui) var(--ease-ui);
+}
+.check input:checked + .check-box { background: var(--color-accent); border-color: var(--color-accent); }
+.check input:checked + .check-box::after { opacity: 1; }
+.check input:focus-visible + .check-box { box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 60%, transparent); }
+.check input:user-invalid + .check-box { border-color: var(--color-error); }
+.check-text a { text-decoration: underline; text-underline-offset: 0.2em; }
+.check-text a:hover { opacity: 0.8; }
+.check.is-shake .check-box { animation: shake 0.4s var(--ease-ui); }
+@keyframes shake {
+  0%, 100% { translate: 0 0; }
+  20% { translate: -6px 0; }
+  40% { translate: 6px 0; }
+  60% { translate: -4px 0; }
+  80% { translate: 4px 0; }
+}
 .form-actions {
   display: flex;
   align-items: center;
@@ -1081,6 +1129,7 @@ body[data-theme="dark"] {
   .carousel-track { transition: none; }
   .hero-photo img { animation: none; }
   .btn:hover, .nav-link--inline:hover .arrow-glyph, .btn:hover .btn-arrow { transform: none; }
+  .check.is-shake .check-box { animation: none; border-color: var(--color-error); }
 }
 
 /* Netlify Forms honeypot */

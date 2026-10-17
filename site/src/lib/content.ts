@@ -12,7 +12,7 @@ export const sanityConfig = projectId ? { projectId, dataset } : null;
 const asset = `asset->{url, metadata{dimensions}}`;
 const image = `{..., ${asset}}`;
 const QUERY = `{
-  "settings": *[_id == "settings"][0]{..., ogImage${image}},
+  "settings": *[_id == "settings"][0]{..., ogImage${image}, "privacyPolicyUrl": privacyPolicy.asset->url},
   "landing": *[_id == "landing"][0]{
     sections[]{
       ...,

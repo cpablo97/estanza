@@ -40,6 +40,7 @@ export type Settings = {
   socialLinks?: SocialLink[];
   phonePrefixDefault?: string;
   formEndpoint?: string;
+  privacyPolicyUrl?: string;
   labels: Record<string, L>;
 };
 

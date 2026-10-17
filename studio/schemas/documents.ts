@@ -74,6 +74,14 @@ export const settings = defineType({
     }),
     defineField({ name: "phonePrefixDefault", title: "Indicativo por defecto", type: "string", group: "contact", initialValue: "+57" }),
     defineField({ name: "formEndpoint", title: "Servicio del formulario (URL)", type: "string", group: "contact", description: "Vacío = Netlify Forms. O una URL tipo Formspree." }),
+    defineField({
+      name: "privacyPolicy",
+      title: "Política de tratamiento de datos (PDF)",
+      description: "Se enlaza desde la casilla de aceptación del formulario. Sin PDF, la casilla aparece sin enlace.",
+      type: "file",
+      group: "contact",
+      options: { accept: "application/pdf" },
+    }),
 
     defineField({
       name: "labels",
@@ -97,6 +105,9 @@ export const settings = defineType({
         label("phonePrefix", "Indicativo del país"),
         label("organisation", "Organización (opcional)"),
         label("send", "Enviar"),
+        label("privacyAccept", "Casilla: texto antes del enlace"),
+        label("privacyPolicy", "Casilla: texto del enlace a la política"),
+        label("statusPrivacy", "Aviso: falta aceptar la política"),
         label("statusRequired", "Aviso: campos requeridos"),
         label("statusSending", "Aviso: enviando"),
         label("statusSuccess", "Aviso: enviado"),

@@ -10,7 +10,11 @@
     "siteUrl": "https://estanzacx.com",
     "email": "hola@estanzacx.com",
     "socialLinks": [
-      { "_key": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com" }
+      {
+        "_key": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com"
+      }
     ],
     "phonePrefixDefault": "+57",
     "copyrightName": "Estanza",
@@ -111,8 +115,21 @@
       "statusError": {
         "es": "No pudimos enviar el formulario. Escríbenos a hola@estanzacx.com.",
         "en": "We couldn't send the form. Please write to hola@estanzacx.com."
+      },
+      "privacyAccept": {
+        "es": "He leído y acepto la",
+        "en": "I have read and accept the"
+      },
+      "privacyPolicy": {
+        "es": "política de tratamiento de datos",
+        "en": "data protection policy"
+      },
+      "statusPrivacy": {
+        "es": "Debes aceptar la política de tratamiento de datos para enviar.",
+        "en": "Please accept the data protection policy to send."
       }
-    }
+    },
+    "privacyPolicyUrl": ""
   },
   "landing": {
     "_type": "landing",
@@ -326,9 +343,21 @@
               "en": "A consulting process to understand and redesign how the client experiences their relationship with the organisation, from first contact to the close of the service and the continuity of the relationship. It includes a comprehensive audit, a working session with the team and concrete, actionable recommendations."
             },
             "tags": [
-              { "_key": "s1-tag-1", "es": "Diagnóstico integral", "en": "Comprehensive diagnosis" },
-              { "_key": "s1-tag-2", "es": "Sesión de trabajo con el equipo", "en": "Working session with the team" },
-              { "_key": "s1-tag-3", "es": "Hoja de ruta y recomendaciones", "en": "Roadmap and recommendations" }
+              {
+                "_key": "s1-tag-1",
+                "es": "Diagnóstico integral",
+                "en": "Comprehensive diagnosis"
+              },
+              {
+                "_key": "s1-tag-2",
+                "es": "Sesión de trabajo con el equipo",
+                "en": "Working session with the team"
+              },
+              {
+                "_key": "s1-tag-3",
+                "es": "Hoja de ruta y recomendaciones",
+                "en": "Roadmap and recommendations"
+              }
             ],
             "stripe": {
               "local": {
