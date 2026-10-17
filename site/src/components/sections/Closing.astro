@@ -7,6 +7,7 @@ interface Props { section: ClosingSection; locale: Locale; index: number; settin
 const { section, locale, index, settings } = Astro.props;
 const id = `${section._key}-title`;
 const year = new Date().getFullYear();
+const social = section.showSocial !== false ? settings.socialLinks ?? [] : [];
 ---
 <Room section={section} locale={locale} index={index} kind="closing" titleId={id}>
   <div class="closing">
@@ -14,9 +15,12 @@ const year = new Date().getFullYear();
     {section.line && <p class="lede" data-reveal style="--i: 1;">{loc(section.line, locale)}</p>}
     <a class="closing-email" href={`mailto:${settings.email}`} data-reveal style="--i: 2;">{settings.email}</a>
     <div class="closing-meta" data-reveal style="--i: 3;">
-      {section.showLinkedin && settings.linkedin && <a href={settings.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
-      {section.showLinkedin && settings.linkedin && <span aria-hidden="true">·</span>}
-      <span>© <span data-year>{year}</span> {settings.copyrightName || "Estanza"}</span>
+      {social.length > 0 && (
+        <ul class="closing-social">
+          {social.map((sl) => <li><a href={sl.url} target="_blank" rel="noopener">{sl.label}</a></li>)}
+        </ul>
+      )}
+      <p class="closing-copy">© <span data-year>{year}</span> {settings.copyrightName || "Estanza"}</p>
     </div>
   </div>
 </Room>

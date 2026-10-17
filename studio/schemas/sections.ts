@@ -168,7 +168,7 @@ export const closingSection = defineType({
     // No eyebrow here: the closing room opens straight with the title.
     defineField({ name: "title", title: "Título", type: "localeString", validation: (r) => r.required() }),
     defineField({ name: "line", title: "Frase", type: "localeText" }),
-    defineField({ name: "showLinkedin", title: "Mostrar LinkedIn", type: "boolean", initialValue: true }),
+    defineField({ name: "showSocial", title: "Mostrar redes sociales", type: "boolean", initialValue: true, description: "Las redes se configuran en Ajustes → Contacto." }),
     ...shared,
   ],
   preview: preview("Cierre"),

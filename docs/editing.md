@@ -5,7 +5,7 @@ La página se edita en **https://estanza.sanity.studio** (inicia sesión con tu 
 ## Los dos apartados
 
 - **Página** — las secciones del sitio, en el orden en que aparecen.
-- **Ajustes** — correo, LinkedIn, dominio, imagen para redes y los textos pequeños de la interfaz.
+- **Ajustes** — correo, redes sociales (hasta 4 enlaces: nombre + URL, en el orden en que aparecen en el pie y en el menú), dominio, imagen para redes y los textos pequeños de la interfaz.
 
 ## Reordenar secciones
 En **Página**, cada sección tiene un asa (⋮⋮) a la izquierda. Arrástrala para cambiar el orden. El menú lateral y los numerales (I., II., III.…) se recalculan solos: las secciones seguidas que comparten el mismo **Grupo del menú** quedan bajo un mismo numeral.

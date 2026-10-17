@@ -9,7 +9,9 @@
     },
     "siteUrl": "https://estanzacx.com",
     "email": "hola@estanzacx.com",
-    "linkedin": "https://www.linkedin.com",
+    "socialLinks": [
+      { "_key": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com" }
+    ],
     "phonePrefixDefault": "+57",
     "copyrightName": "Estanza",
     "formEndpoint": "",
@@ -524,7 +526,7 @@
           "es": "Trabajemos juntos en tu próximo proyecto.",
           "en": "Let's work together on your next project."
         },
-        "showLinkedin": true
+        "showSocial": true
       }
     ]
   }

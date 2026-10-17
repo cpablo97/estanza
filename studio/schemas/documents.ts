@@ -52,7 +52,26 @@ export const settings = defineType({
     defineField({ name: "copyrightName", title: "Nombre en el ©", type: "string", group: "site", initialValue: "Estanza" }),
 
     defineField({ name: "email", title: "Correo", type: "string", group: "contact", validation: (r) => r.required().email() }),
-    defineField({ name: "linkedin", title: "LinkedIn (URL)", type: "url", group: "contact" }),
+    defineField({
+      name: "socialLinks",
+      title: "Redes sociales (hasta 4)",
+      description: "Se muestran en el pie de página y en el menú lateral, en este orden.",
+      type: "array",
+      group: "contact",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "socialLink",
+          title: "Red social",
+          fields: [
+            defineField({ name: "label", title: "Nombre", type: "string", validation: (r) => r.required(), description: "p. ej. LinkedIn, Instagram" }),
+            defineField({ name: "url", title: "URL", type: "url", validation: (r) => r.required() }),
+          ],
+          preview: { select: { title: "label", subtitle: "url" } },
+        }),
+      ],
+      validation: (r) => r.max(4),
+    }),
     defineField({ name: "phonePrefixDefault", title: "Indicativo por defecto", type: "string", group: "contact", initialValue: "+57" }),
     defineField({ name: "formEndpoint", title: "Servicio del formulario (URL)", type: "string", group: "contact", description: "Vacío = Netlify Forms. O una URL tipo Formspree." }),
 

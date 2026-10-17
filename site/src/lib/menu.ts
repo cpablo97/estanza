@@ -25,7 +25,7 @@ export function buildMenu(sections: Section[], settings: Settings, locale: Local
     }
     if (s._type === "contactSection") {
       g.links.push({ href: `mailto:${settings.email}`, label: settings.email, inline: true });
-      if (settings.linkedin) g.links.push({ href: settings.linkedin, label: "LinkedIn", inline: true, external: true });
+      for (const sl of settings.socialLinks ?? []) g.links.push({ href: sl.url, label: sl.label, inline: true, external: true });
     }
   }
   return groups;
