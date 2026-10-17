@@ -656,7 +656,7 @@ body[data-theme="dark"] {
 }
 /* Measuring pass for the one-line fit: natural width at the CSS size, no wrapping */
 .carousel-track.is-measuring .service-title { display: block; white-space: nowrap; overflow: visible; font-size: var(--fs-h3); }
-.service-text { max-width: var(--measure-body); }
+.service-text { max-width: 600px; }
 
 /* Steps */
 .room--steps .room-inner { max-width: 1100px; padding-block: var(--space-5); }
