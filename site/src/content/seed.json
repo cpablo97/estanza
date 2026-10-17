@@ -323,6 +323,11 @@
               "es": "Proceso de consultoría para entender y rediseñar cómo experimenta el cliente su relación con la organización, desde el primer contacto hasta el cierre del servicio y la continuidad de la relación. Incluye auditoría integral, sesión de trabajo con el equipo y entrega de recomendaciones concretas y accionables.",
               "en": "A consulting process to understand and redesign how the client experiences their relationship with the organisation, from first contact to the close of the service and the continuity of the relationship. It includes a comprehensive audit, a working session with the team and concrete, actionable recommendations."
             },
+            "tags": [
+              { "_key": "s1-tag-1", "es": "Diagnóstico integral", "en": "Comprehensive diagnosis" },
+              { "_key": "s1-tag-2", "es": "Sesión de trabajo con el equipo", "en": "Working session with the team" },
+              { "_key": "s1-tag-3", "es": "Hoja de ruta y recomendaciones", "en": "Roadmap and recommendations" }
+            ],
             "stripe": {
               "local": {
                 "webp": [

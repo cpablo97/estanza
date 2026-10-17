@@ -37,6 +37,11 @@ const n = section.items.length;
                 <h3 class="service-title">{loc(it.title, locale)}</h3>
               </div>
               <p class="service-text">{loc(it.body, locale)}</p>
+              {it.tags?.length ? (
+                <ol class="service-tags">
+                  {it.tags.map((t) => <li>{loc(t, locale)}</li>)}
+                </ol>
+              ) : null}
             </div>
           </article>
         ))}

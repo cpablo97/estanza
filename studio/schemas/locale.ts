@@ -14,6 +14,8 @@ export const localeString = defineType({
   fields: langs.map((l) =>
     defineField({ name: l.id, title: l.title, type: "string", validation: (r) => (l.id === "es" ? r.required() : r) })
   ),
+  // Only used when the type is an array member (e.g. service tags): rows show their text.
+  preview: { select: { title: "es", subtitle: "en" } },
 });
 
 export const localeText = defineType({

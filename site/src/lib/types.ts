@@ -22,7 +22,7 @@ type Shared = {
 
 export type HeroSection = Shared & { _type: "heroSection"; title: string; ctaLabel: L; ctaTarget: string; photos: Img[] };
 export type TextImageSection = Shared & { _type: "textImageSection" | "genericSection"; eyebrow?: L; title: L; body?: L<unknown[]>; image?: Img; imageSide?: "left" | "right" };
-export type ServicesSection = Shared & { _type: "servicesSection"; eyebrow?: L; title: L; items: { _key: string; menuLabel: L; title: L; body: L; stripe: Img }[] };
+export type ServicesSection = Shared & { _type: "servicesSection"; eyebrow?: L; title: L; items: { _key: string; menuLabel: L; title: L; body: L; tags?: L[]; stripe: Img }[] };
 export type StepsSection = Shared & { _type: "stepsSection"; eyebrow?: L; title: L; steps: { _key: string; title: L; text: L }[] };
 export type ContactSection = Shared & { _type: "contactSection"; eyebrow?: L; title: L; lede?: L; disclaimer: L };
 export type ClosingSection = Shared & { _type: "closingSection"; eyebrow?: L; title: L; line?: L; showLinkedin?: boolean };

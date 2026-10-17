@@ -13,6 +13,8 @@ En **Página**, cada sección tiene un asa (⋮⋮) a la izquierda. Arrástrala 
 ## Cambiar textos
 Cada texto tiene dos columnas: **Español** y **English**. El español es obligatorio; si dejas el inglés vacío se mostrará el español en la versión inglesa.
 
+En **Servicios**, cada servicio tiene además **Incluye (hasta 3)**: frases cortas (entregables o puntos clave) que aparecen como lista numerada bajo la descripción. Escríbelas ahí, no dentro de la descripción.
+
 ## Cambiar o añadir imágenes
 1. Abre la sección y pulsa sobre la imagen → **Subir** o **Seleccionar** de la biblioteca.
 2. Usa **Editar punto de interés** para elegir qué parte de la foto debe quedar siempre visible.
