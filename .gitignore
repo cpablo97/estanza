@@ -11,3 +11,4 @@ studio/dist/
 .env.*
 !.env.example
 studio/.sanity/
+.claude/
