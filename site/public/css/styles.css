@@ -722,7 +722,8 @@ body[data-theme="dark"] {
   flex-direction: column;
   gap: var(--space-4);
 }
-.contact-title {
+.contact-title,
+.closing-title {
   font-size: clamp(1.75rem, 1rem + 2.8cqi, 3.25rem);
   letter-spacing: var(--tracking-mid);
   max-width: 18ch;
@@ -806,12 +807,12 @@ body[data-theme="dark"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-4); /* same rhythm as .contact-intro */
 }
-.closing-title { max-width: 14ch; }
+.closing-title { text-wrap: balance; }
 .closing-email {
   font-family: var(--font-display);
-  font-size: var(--fs-h3);
+  font-size: clamp(1.25rem, 1rem + 1.2cqi, 1.75rem); /* a step below the title, a step above the lede */
   letter-spacing: var(--tracking-label);
   line-height: var(--lh-heading);
   padding-bottom: 0.1em;
@@ -948,8 +949,7 @@ body[data-theme="dark"] {
   .about-grid { max-width: none; }
   .services-head { flex-direction: column; align-items: flex-start; gap: var(--space-4); }
   .service-title, .step-title { max-width: none; }
-  .contact-title { max-width: none; }
-  .closing-title { max-width: 12ch; }
+  .contact-title, .closing-title { max-width: none; }
   .closing-meta { margin-top: var(--space-4); }
 }
 

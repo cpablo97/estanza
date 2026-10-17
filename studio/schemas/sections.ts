@@ -165,7 +165,8 @@ export const closingSection = defineType({
   title: "Cierre",
   type: "object",
   fields: [
-    ...eyebrowTitle,
+    // No eyebrow here: the closing room opens straight with the title.
+    defineField({ name: "title", title: "Título", type: "localeString", validation: (r) => r.required() }),
     defineField({ name: "line", title: "Frase", type: "localeText" }),
     defineField({ name: "showLinkedin", title: "Mostrar LinkedIn", type: "boolean", initialValue: true }),
     ...shared,
