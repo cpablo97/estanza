@@ -19,3 +19,24 @@ docs/     editing.md — guide for the client (Spanish)
 
 ## Local development
 `cd site && npm install && npm run dev` — works with or without Sanity credentials.
+
+## Formulario de contacto (Netlify Forms)
+
+El formulario ya está preparado para Netlify Forms (`name="contacto"`, campo oculto `form-name`,
+honeypot). Lo que falta se configura una sola vez en el panel de Netlify, no en el código:
+
+1. **Activar la detección**: Site configuration → Forms → *Enable form detection*. Después hace
+   falta un deploy nuevo (Deploys → *Trigger deploy*) para que Netlify lea el HTML y registre el
+   formulario. Al terminar, en **Forms** aparece `contacto` con sus campos (nombre, apellido,
+   email, prefijo, telefono, organizacion, privacidad).
+2. **Correo por cada envío**: Site configuration → Notifications → *Emails and webhooks* →
+   *Form submission notifications* → *Add notification* → *Email notification*; evento
+   *New form submission*, formulario `contacto`, y la dirección que debe recibirlo. Se pueden
+   añadir varias direcciones creando una notificación por cada una.
+3. **Exportar a Excel**: Forms → `contacto` → *Download CSV*. El CSV abre directamente en Excel
+   o Google Sheets. Los envíos marcados como spam quedan en la pestaña *Spam* y no se exportan.
+
+Límites del plan gratuito: 100 envíos al mes y los datos se conservan mientras exista el sitio.
+Si se superan, Netlify cobra el nivel siguiente o deja de almacenar; en ese caso la alternativa
+es un servicio tipo Formspree, que el sitio ya admite poniendo su URL en *Ajustes → Servicio del
+formulario*.
