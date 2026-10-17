@@ -41,6 +41,7 @@
 
   --tracking-wide: 0.2em;
   --tracking-mid: 0.12em;
+  --tracking-title: 0.1em; /* card titles: uppercase display face at text sizes */
   --tracking-label: 0.08em;
   --tracking-body: 0.01em;
   --tracking-tight: -0.02em;
@@ -621,27 +622,37 @@ body[data-theme="dark"] {
   flex: 0 0 100%;
   display: grid;
   grid-template-columns: clamp(64px, 9cqi, 123px) minmax(0, 1fr);
-  gap: var(--space-5);
+  gap: var(--space-5); /* 32px: stripe → copy */
   align-items: stretch;
   transition: opacity 0.65s var(--ease-room);
 }
 .service-card:not(.is-current) { opacity: 0; }
-.service-stripe { overflow: hidden; min-height: 100%; }
-.service-stripe img { width: 100%; height: 100%; object-fit: cover; }
+/* The stripe takes the card's full height: the image is taken out of flow so the
+   copy column alone decides how tall the card is, and the texture fills that box. */
+.service-stripe { position: relative; overflow: hidden; }
+.service-stripe picture,
+.service-stripe img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.service-stripe img { object-fit: cover; }
+/* Spacing on a 4px grid, tighter as elements belong together:
+   number → title 16px, title → text 24px. */
 .service-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  padding-block: var(--space-2);
+  gap: var(--space-4);
 }
 .service-head { display: flex; flex-direction: column; gap: var(--space-3); }
 .service-title {
   font-family: var(--font-display);
   font-size: var(--fs-h3);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--tracking-wide);
+  line-height: 1.1; /* the clamp below hides overflow; Adobe Arabic's accents need the extra leading */
+  letter-spacing: var(--tracking-title);
   text-transform: uppercase;
-  max-width: var(--measure-title);
+  text-wrap: balance;
+  /* Never more than two lines on tablet and desktop; titles ≈ 50 characters fit. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 .service-text { max-width: var(--measure-body); }
 
@@ -985,7 +996,7 @@ body[data-theme="dark"] {
 
   .service-card { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .service-stripe { height: 48px; }
-  .service-body { gap: var(--space-4); }
+  .service-title { display: block; overflow: visible; } /* phones: let long titles wrap rather than truncate */
 
   .step { grid-template-columns: minmax(0, 1fr); row-gap: var(--space-2); padding-block: var(--space-4); }
   .step-num { grid-row: auto; line-height: 1; margin: 0; }
