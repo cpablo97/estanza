@@ -38,7 +38,7 @@ const ORIGINALS = {
   "og": "site/public/assets/og.jpg",
 };
 const uploaded = new Map();
-async function toAsset(img) {
+async function toAsset(img, type = "image") {
   if (!img?.local) return img;
   const base = path.basename(img.local.fallback).replace(/-(\d+)\.(webp|jpg)$/, "").replace(/\.jpg$/, "");
   const file = ORIGINALS[base];
@@ -49,15 +49,15 @@ async function toAsset(img) {
     console.log(asset._id);
     uploaded.set(base, asset._id);
   }
-  return { _type: "image", asset: { _type: "reference", _ref: uploaded.get(base) }, alt: img.alt };
+  return { _type: type, asset: { _type: "reference", _ref: uploaded.get(base) }, alt: img.alt };
 }
 
 const sections = [];
 for (const s of seed.landing.sections) {
   const out = { ...s, anchor: { _type: "slug", current: s.anchor } };
   if (out.menuLabel === null) delete out.menuLabel;
-  if (out.photos) out.photos = await Promise.all(out.photos.map(toAsset));
-  if (out.image) out.image = await toAsset(out.image);
+  if (out.photos) out.photos = (await Promise.all(out.photos.map((p) => toAsset(p, "localeImage")))).map((p, i) => ({ ...p, _key: `${s._key}-photo-${i}` }));
+  if (out.image) out.image = await toAsset(out.image, "localeImage");
   if (out.items) out.items = await Promise.all(out.items.map(async (it) => ({ ...it, _type: "service", stripe: await toAsset(it.stripe) })));
   if (out.steps) out.steps = out.steps.map((st) => ({ ...st, _type: "step" }));
   if (out.body) out.body = Object.fromEntries(Object.entries(out.body).map(([k, ps]) => [k, ps.map((t, i) => ({ _type: "block", _key: `${s._key}-${k}-${i}`, style: "normal", markDefs: [], children: [{ _type: "span", _key: `${s._key}-${k}-${i}-s`, text: t, marks: [] }] }))]));
