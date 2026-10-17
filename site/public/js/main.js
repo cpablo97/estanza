@@ -103,6 +103,27 @@
       if (e.key === "ArrowLeft") { e.preventDefault(); goTo(index - 1); }
     });
 
+    /* On desktop every title sits on one line: all cards share the largest size
+       (up to the CSS size) at which the longest title still fits. Below the
+       1.5rem floor a title is allowed to wrap; the CSS then caps it at two lines. */
+    const titles = cards.map((card) => $(".service-title", card)).filter(Boolean);
+    const fitMQ = window.matchMedia("(min-width: 900px)");
+    function fitTitles() {
+      root.style.removeProperty("--service-title-fs");
+      if (!fitMQ.matches || !titles.length) return;
+      track.classList.add("is-measuring");
+      const base = parseFloat(getComputedStyle(titles[0]).fontSize);
+      const scale = Math.min(1, ...titles.map((t) => t.clientWidth / t.scrollWidth));
+      track.classList.remove("is-measuring");
+      const floor = 1.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const size = Math.max(floor, Math.floor(base * scale));
+      if (size < base) root.style.setProperty("--service-title-fs", `${size}px`);
+    }
+    fitTitles();
+    fitMQ.addEventListener("change", fitTitles);
+    window.addEventListener("resize", fitTitles);
+    if (document.fonts) document.fonts.ready.then(fitTitles);
+
     render();
     return { goTo, get index() { return index; }, set onChange(fn) { onChange = fn; } };
   })();

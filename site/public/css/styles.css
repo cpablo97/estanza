@@ -643,7 +643,7 @@ body[data-theme="dark"] {
 .service-head { display: flex; flex-direction: column; gap: var(--space-3); }
 .service-title {
   font-family: var(--font-display);
-  font-size: var(--fs-h3);
+  font-size: var(--service-title-fs, var(--fs-h3)); /* main.js lowers it so every title fits one line on desktop */
   line-height: 1.1; /* the clamp below hides overflow; Adobe Arabic's accents need the extra leading */
   letter-spacing: var(--tracking-title);
   text-transform: uppercase;
@@ -654,6 +654,8 @@ body[data-theme="dark"] {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+/* Measuring pass for the one-line fit: natural width at the CSS size, no wrapping */
+.carousel-track.is-measuring .service-title { display: block; white-space: nowrap; overflow: visible; font-size: var(--fs-h3); }
 .service-text { max-width: var(--measure-body); }
 
 /* Steps */
