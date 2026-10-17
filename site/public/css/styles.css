@@ -1029,6 +1029,9 @@ body[data-theme="dark"] {
 
   .form-row { grid-template-columns: 1fr; }
   .form-actions { flex-direction: column; align-items: flex-start; }
+  /* Phones wrap the social row: space the links instead of middots, so no line starts with a dot */
+  .closing-social { column-gap: var(--space-4); }
+  .closing-social li + li::before { content: none; padding: 0; }
 }
 
 @media (min-width: 900px) and (max-width: 1199px) {
