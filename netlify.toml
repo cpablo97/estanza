@@ -4,7 +4,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
   # Public identifiers (also visible in every CDN image URL); values here override the Netlify UI.
   PUBLIC_SANITY_PROJECT_ID = "5j5yx4z7"
   PUBLIC_SANITY_DATASET = "production"
