@@ -26,9 +26,10 @@ const QUERY = `{
 
 let cache: Promise<Content> | null = null;
 
-/** Content from Sanity when a project id is configured; otherwise the local seed (identical shape). */
+/** Content from Sanity when a project id is configured; otherwise the local seed (identical shape).
+ *  Fetched once per build; in `astro dev` every page load refetches so studio edits show on reload. */
 export function getContent(): Promise<Content> {
-  if (!cache) {
+  if (!cache || import.meta.env.DEV) {
     cache = (async () => {
       if (!sanityConfig) {
         if (process.env.NETLIFY) console.warn("[estanza] PUBLIC_SANITY_PROJECT_ID is not set: building from the local seed, not from Sanity.");
