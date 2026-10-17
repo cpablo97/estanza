@@ -658,26 +658,15 @@ body[data-theme="dark"] {
 /* Measuring pass for the one-line fit: natural width at the CSS size, no wrapping */
 .carousel-track.is-measuring .service-title { display: block; white-space: nowrap; overflow: visible; font-size: var(--fs-h3); }
 .service-text { max-width: 600px; }
-/* Deliverables ("Incluye"): numbered hairline rows, same family as the steps list */
-.service-tags { list-style: none; margin: 0; padding: 0; max-width: 600px; counter-reset: tag; }
+/* Deliverables ("Incluye"): plain hairline rows, same family as the steps list */
+.service-tags { list-style: none; margin: 0; padding: 0; max-width: 600px; }
 .service-tags li {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
   padding-block: 0.75rem; /* 12px rows on the 4px grid */
   border-top: 1px solid var(--color-rule);
   font-size: var(--fs-small);
   line-height: var(--lh-tight);
 }
 .service-tags li:last-child { border-bottom: 1px solid var(--color-rule); }
-.service-tags li::before {
-  content: counter(tag, decimal-leading-zero);
-  counter-increment: tag;
-  min-width: 2ch;
-  font-size: var(--fs-eyebrow);
-  letter-spacing: var(--tracking-label);
-  opacity: 0.6;
-}
 
 /* Steps */
 .room--steps .room-inner { max-width: 1100px; padding-block: var(--space-5); }

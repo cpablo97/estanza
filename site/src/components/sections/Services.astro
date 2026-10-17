@@ -38,9 +38,9 @@ const n = section.items.length;
               </div>
               <p class="service-text">{loc(it.body, locale)}</p>
               {it.tags?.length ? (
-                <ol class="service-tags">
+                <ul class="service-tags">
                   {it.tags.map((t) => <li>{loc(t, locale)}</li>)}
-                </ol>
+                </ul>
               ) : null}
             </div>
           </article>
