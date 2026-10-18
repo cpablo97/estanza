@@ -327,15 +327,24 @@ button {
   line-height: 1.15;
   letter-spacing: var(--tracking-tight);
   padding-bottom: 0.08em;
+  /* The line must be a whole number of *device* pixels: a fractional thickness
+     snaps to one more or one fewer pixel depending on where the link's bottom
+     edge lands, so some underlines looked thinner than others. */
+  --nav-underline: 2px; /* 1×: 2 device px */
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   background-position: 0 100%;
-  background-size: 0 1.5px;
+  background-size: 0 var(--nav-underline);
   transition: background-size 0.35s var(--ease-ui), opacity var(--dur-ui) var(--ease-ui);
 }
+@media (min-resolution: 1.2dppx) { .nav-link { --nav-underline: 1.6px; } }  /* 1.25×: 2 device px */
+@media (min-resolution: 1.45dppx) { .nav-link { --nav-underline: 2px; } }   /* 1.5×: 3 device px */
+@media (min-resolution: 1.7dppx) { .nav-link { --nav-underline: 1.72px; } } /* 1.75×: 3 device px */
+@media (min-resolution: 1.95dppx) { .nav-link { --nav-underline: 1.5px; } } /* 2×: 3 device px */
+@media (min-resolution: 2.9dppx) { .nav-link { --nav-underline: 1.67px; } } /* 3×: 5 device px */
 .nav-link:hover,
 .nav-link:focus-visible,
-.nav-link.is-active { background-size: 100% 1.5px; }
+.nav-link.is-active { background-size: 100% var(--nav-underline); }
 .nav-links:hover .nav-link:not(:hover) { opacity: 0.6; }
 
 .nav-link--inline {
