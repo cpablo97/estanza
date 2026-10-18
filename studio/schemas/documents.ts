@@ -45,11 +45,13 @@ export const settings = defineType({
     { name: "labels", title: "Textos de interfaz" },
   ],
   fields: [
-    defineField({ name: "siteTitle", title: "Título del sitio (pestaña y buscadores)", type: "string", group: "site", validation: (r) => r.required() }),
+    defineField({ name: "siteTitle", title: "Título del sitio (pestaña y buscadores)", type: "localeString", group: "site", description: "Unos 55 caracteres: marca + a qué se dedica, p. ej. «Estanza — Consultoría en Client Experience».", validation: (r) => r.required() }),
     defineField({ name: "metaDescription", title: "Descripción (buscadores)", type: "localeText", group: "site" }),
-    defineField({ name: "siteUrl", title: "Dominio", type: "url", group: "site", description: "p. ej. https://estanzacx.com" }),
+    defineField({ name: "siteUrl", title: "Dominio", type: "url", group: "site", description: "p. ej. https://www.estanzacx.com" }),
     defineField({ name: "ogImage", title: "Imagen para redes (1200×630)", type: "image", group: "site" }),
     defineField({ name: "copyrightName", title: "Nombre en el ©", type: "string", group: "site", initialValue: "Estanza" }),
+    defineField({ name: "seoCity", title: "Ciudad (datos para buscadores)", type: "string", group: "site", description: "Dónde opera la firma; aparece solo en los datos estructurados, no en la página." }),
+    defineField({ name: "seoCountry", title: "País (código ISO de 2 letras)", type: "string", group: "site", initialValue: "CO", validation: (r) => r.regex(/^[A-Z]{2}$/).warning("Dos letras mayúsculas, p. ej. CO") }),
 
     defineField({ name: "email", title: "Correo", type: "string", group: "contact", validation: (r) => r.required().email() }),
     defineField({

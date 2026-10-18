@@ -1,0 +1,39 @@
+---
+// Netlify serves dist/404.html for unknown URLs. Standalone (no sidebar, no pager):
+// the menu links point at anchors that only exist on the landing page.
+import { getContent } from "../lib/content";
+const { settings } = await getContent();
+const v = (process.env.COMMIT_REF || String(Date.now())).slice(0, 8);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página no encontrada — {settings.copyrightName || "Estanza"}</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#dfd8cb">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href={`/css/styles.css?v=${v}`}>
+<style>.notfound { padding-inline-start: 0; } .notfound .lede { margin-top: 0; }</style>
+</head>
+<body data-theme="light">
+<main class="stage">
+  <section class="room room--closing notfound is-active">
+    <div class="room-scroll">
+      <div class="room-inner">
+        <div class="closing">
+          <p class="eyebrow">404</p>
+          <h1 class="section-title contact-title">Página no encontrada</h1>
+          <p class="lede">Esta dirección no existe. / This page doesn't exist.</p>
+          <p class="closing-meta" style="margin-top: 0;">
+            <a class="btn" href="/">Volver al inicio</a>
+            <a class="btn" href="/en/">Go to the English site</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -4,44 +4,90 @@ import { loc } from "../lib/loc";
 import { sources } from "../lib/image";
 import Sidebar from "../components/Sidebar.astro";
 
-interface Props { content: Content; locale: Locale }
-const { content, locale } = Astro.props;
+interface Props { content: Content; locale: Locale; title?: string; noindex?: boolean; path?: string }
+const { content, locale, title: pageTitle, noindex = false } = Astro.props;
 const { settings } = content;
 const siteUrl = (settings.siteUrl || Astro.site?.toString() || "https://www.estanzacx.com").replace(/\/$/, "");
-const path = locale === "en" ? "/en/" : "/";
+const path = Astro.props.path ?? (locale === "en" ? "/en/" : "/");
 const og = sources(settings.ogImage, [1200]);
 const description = loc(settings.metaDescription, locale) ?? "";
+const brand = settings.copyrightName || "Estanza";
+// The site title is bilingual; the plain string is tolerated until the content migration has run.
+const siteTitle = (typeof settings.siteTitle === "string" ? settings.siteTitle : loc(settings.siteTitle, locale)) || brand;
+const title = pageTitle ? `${pageTitle} — ${brand}` : siteTitle;
+const ogImage = og ? (og.fallback.startsWith("http") ? og.fallback : `${siteUrl}${og.fallback}`) : undefined;
+const ogLocale = locale === "en" ? "en_US" : "es_CO";
+const ogLocaleAlt = locale === "en" ? "es_CO" : "en_US";
+// styles.css and the scripts have no content hash; the commit id busts long caches (see netlify.toml).
+const v = (process.env.COMMIT_REF || String(Date.now())).slice(0, 8);
+
+// Structured data: who runs the site and in which language this page is.
+const orgId = `${siteUrl}/#org`;
+const sameAs = (settings.socialLinks ?? []).map((s) => s.url);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": orgId,
+      name: brand,
+      url: `${siteUrl}/`,
+      email: settings.email,
+      description: description || undefined,
+      image: ogImage,
+      logo: `${siteUrl}/assets/icons/apple-touch-icon.png`,
+      sameAs: sameAs.length ? sameAs : undefined,
+      ...(settings.seoCity
+        ? {
+            address: { "@type": "PostalAddress", addressLocality: settings.seoCity, addressCountry: settings.seoCountry || "CO" },
+            areaServed: { "@type": "Country", name: settings.seoCountry || "CO" },
+          }
+        : {}),
+    },
+    { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: siteTitle, inLanguage: locale, publisher: { "@id": orgId } },
+  ],
+};
+const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 ---
 <!DOCTYPE html>
 <html lang={locale}>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{settings.siteTitle}</title>
+<title>{title}</title>
 <meta name="description" content={description}>
+{noindex && <meta name="robots" content="noindex">}
 <meta name="theme-color" content="#dfd8cb">
-<link rel="canonical" href={`${siteUrl}${path}`}>
-<link rel="alternate" hreflang="es" href={`${siteUrl}/`}>
-<link rel="alternate" hreflang="en" href={`${siteUrl}/en/`}>
-<link rel="alternate" hreflang="x-default" href={`${siteUrl}/`}>
+{!noindex && <link rel="canonical" href={`${siteUrl}${path}`}>}
+{!noindex && <link rel="alternate" hreflang="es" href={`${siteUrl}/`}>}
+{!noindex && <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`}>}
+{!noindex && <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`}>}
 <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:locale" content={locale === "en" ? "en_US" : "es_CO"}>
-<meta property="og:site_name" content={settings.copyrightName || "Estanza"}>
-<meta property="og:title" content={settings.siteTitle}>
+<meta property="og:locale" content={ogLocale}>
+<meta property="og:locale:alternate" content={ogLocaleAlt}>
+<meta property="og:site_name" content={brand}>
+<meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:url" content={`${siteUrl}${path}`}>
-{og && <meta property="og:image" content={og.fallback.startsWith("http") ? og.fallback : `${siteUrl}${og.fallback}`}>}
+{ogImage && <meta property="og:image" content={ogImage}>}
 {og && <meta property="og:image:width" content={String(og.width)}>}
 {og && <meta property="og:image:height" content={String(og.height)}>}
+{ogImage && <meta property="og:image:alt" content={siteTitle}>}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+{ogImage && <meta name="twitter:image" content={ogImage}>}
 
+<link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.sanity.io">
 <link rel="preload" href="/assets/fonts/AdobeArabic-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/styles.css">
-<script defer src="/js/pager.js"></script>
-<script defer src="/js/main.js"></script>
+<link rel="stylesheet" href={`/css/styles.css?v=${v}`}>
+<script defer src={`/js/pager.js?v=${v}`}></script>
+<script defer src={`/js/main.js?v=${v}`}></script>
+{!noindex && <script type="application/ld+json" is:inline set:html={jsonLdText}></script>}
 </head>
 <body data-theme="light">
 

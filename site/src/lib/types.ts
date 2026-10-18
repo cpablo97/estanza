@@ -31,11 +31,13 @@ export type Section = HeroSection | TextImageSection | ServicesSection | StepsSe
 export type SocialLink = { _key: string; label: string; url: string };
 
 export type Settings = {
-  siteTitle: string;
+  siteTitle: L | string; // string until the content migration has run
   metaDescription?: L;
   siteUrl?: string;
   ogImage?: Img;
   copyrightName?: string;
+  seoCity?: string;
+  seoCountry?: string;
   email: string;
   socialLinks?: SocialLink[];
   phonePrefixDefault?: string;

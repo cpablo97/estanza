@@ -20,6 +20,15 @@ docs/     editing.md — guide for the client (Spanish)
 ## Local development
 `cd site && npm install && npm run dev` — works with or without Sanity credentials.
 
+## Buscadores
+El sitio publica `robots.txt`, `sitemap-index.xml` (con alternativas es/en), una página 404 propia y
+datos estructurados (ProfessionalService + WebSite) generados desde *Ajustes*. Pasos únicos en cuentas
+externas:
+1. **Google Search Console**: añadir la propiedad `estanzacx.com` (tipo *Dominio*), verificar con el registro
+   TXT en el DNS del dominio y en *Sitemaps* enviar `https://www.estanzacx.com/sitemap-index.xml`.
+2. **Bing Webmaster Tools**: importar desde Search Console o enviar el mismo sitemap.
+3. Revisar los datos estructurados con https://validator.schema.org pegando la URL.
+
 ## Formulario de contacto (Netlify Forms)
 
 El formulario ya está preparado para Netlify Forms (`name="contacto"`, campo oculto `form-name`,

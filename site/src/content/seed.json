@@ -2,7 +2,10 @@
   "settings": {
     "_type": "settings",
     "_id": "settings",
-    "siteTitle": "Estanza — Turning clients into guests",
+    "siteTitle": {
+      "es": "Estanza — Consultoría en Client Experience",
+      "en": "Estanza — Client Experience consultancy"
+    },
     "metaDescription": {
       "es": "Estanza es una firma de consultoría en Client Experience que traduce los principios de la hospitalidad de alto nivel al mundo de los servicios profesionales.",
       "en": "Estanza is a Client Experience consultancy that translates the principles of high-end hospitality to the world of professional services."
@@ -129,7 +132,9 @@
         "en": "Please accept the data protection policy to send."
       }
     },
-    "privacyPolicyUrl": ""
+    "privacyPolicyUrl": "",
+    "seoCity": "Bogotá",
+    "seoCountry": "CO"
   },
   "landing": {
     "_type": "landing",

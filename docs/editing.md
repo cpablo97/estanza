@@ -25,6 +25,14 @@ La **Portada** admite de 2 a 4 fotos flotantes.
 ## Añadir una sección nueva
 En **Página** → **Añadir elemento** → **Sección nueva (texto, imagen opcional)**. Rellena título, cuerpo, el ancla (una palabra sin acentos, p. ej. `equipo`), el grupo del menú y el color de fondo. Si el fondo es oscuro, el texto pasa a claro automáticamente.
 
+## Buscadores (SEO)
+En **Ajustes → Sitio**:
+- **Título del sitio** (ES / EN): lo que muestran Google y la pestaña del navegador. Unos 55 caracteres: marca + a qué se dedica, p. ej. «Estanza — Consultoría en Client Experience».
+- **Descripción** (ES / EN): el texto bajo el título en Google, unos 150 caracteres.
+- **Ciudad** y **País**: no se ven en la página; se envían a los buscadores como datos de la firma.
+- **Imagen para redes**: la vista previa al compartir el enlace (1200×630).
+El título grande de la portada también tiene versión en español e inglés; en la página en español conviene que esté en español.
+
 ## Publicar
 Los cambios se guardan como borrador mientras editas. Pulsa **Publicar** (abajo a la derecha) para que salgan en la web. **Descartar cambios** vuelve a la última versión publicada.
 
