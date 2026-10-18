@@ -20,7 +20,7 @@ type Shared = {
   customBackground?: string;
 };
 
-export type HeroSection = Shared & { _type: "heroSection"; title: string; ctaLabel: L; ctaTarget: string; photos: Img[] };
+export type HeroSection = Shared & { _type: "heroSection"; title: L | string; ctaLabel: L; ctaTarget: string; photos: Img[] };
 export type TextImageSection = Shared & { _type: "textImageSection" | "genericSection"; eyebrow?: L; title: L; body?: L<unknown[]>; image?: Img; imageSide?: "left" | "right" };
 export type ServicesSection = Shared & { _type: "servicesSection"; eyebrow?: L; title: L; items: { _key: string; menuLabel: L; title: L; body: L; tags?: L[]; stripe: Img }[] };
 export type StepsSection = Shared & { _type: "stepsSection"; eyebrow?: L; title: L; steps: { _key: string; title: L; text: L }[] };

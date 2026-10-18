@@ -149,7 +149,10 @@
           "en": "home"
         },
         "background": "#dfd8cb",
-        "title": "Turning clients into guests",
+        "title": {
+          "es": "Turning clients into guests",
+          "en": "Turning clients into guests"
+        },
         "ctaLabel": {
           "es": "Conversemos",
           "en": "Let's talk"

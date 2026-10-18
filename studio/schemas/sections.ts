@@ -52,7 +52,7 @@ export const heroSection = defineType({
   title: "Portada",
   type: "object",
   fields: [
-    defineField({ name: "title", title: "Título (frase de marca)", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "title", title: "Título (frase de marca)", type: "localeString", description: "Si la frase es la misma en ambos idiomas, repítela en los dos campos.", validation: (r) => r.required() }),
     defineField({ name: "ctaLabel", title: "Botón", type: "localeString", validation: (r) => r.required() }),
     defineField({ name: "ctaTarget", title: "El botón lleva a (ancla)", type: "string", description: "Escribe el ancla de otra sección, p. ej. contacto.", validation: (r) => r.required() }),
     defineField({
@@ -64,7 +64,7 @@ export const heroSection = defineType({
     }),
     ...shared,
   ],
-  preview: { select: { title: "title" }, prepare: ({ title }) => ({ title, subtitle: "Portada" }) },
+  preview: { select: { title: "title.es" }, prepare: ({ title }) => ({ title, subtitle: "Portada" }) },
 });
 
 export const textImageSection = defineType({
