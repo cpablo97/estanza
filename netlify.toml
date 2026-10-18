@@ -8,9 +8,17 @@
   # Public identifiers (also visible in every CDN image URL); values here override the Netlify UI.
   PUBLIC_SANITY_PROJECT_ID = "5j5yx4z7"
   PUBLIC_SANITY_DATASET = "production"
+  PUBLIC_SITE_URL = "https://www.estanzacx.com"
 
 # The Sanity webhook (Studio → API → Webhooks) should POST to a Netlify Build Hook
 # on create/update/delete of the "landing" and "settings" documents.
+
+# The old Netlify subdomain forwards to the custom domain so there is one canonical site.
+[[redirects]]
+  from = "https://estanzacx.netlify.app/*"
+  to = "https://www.estanzacx.com/:splat"
+  status = 301
+  force = true
 
 [[headers]]
   for = "/assets/fonts/*"

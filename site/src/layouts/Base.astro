@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar.astro";
 interface Props { content: Content; locale: Locale }
 const { content, locale } = Astro.props;
 const { settings } = content;
-const siteUrl = (settings.siteUrl || Astro.site?.toString() || "https://estanzacx.com").replace(/\/$/, "");
+const siteUrl = (settings.siteUrl || Astro.site?.toString() || "https://www.estanzacx.com").replace(/\/$/, "");
 const path = locale === "en" ? "/en/" : "/";
 const og = sources(settings.ogImage, [1200]);
 const description = loc(settings.metaDescription, locale) ?? "";
