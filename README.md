@@ -20,6 +20,14 @@ docs/     editing.md — guide for the client (Spanish)
 ## Local development
 `cd site && npm install && npm run dev` — works with or without Sanity credentials.
 
+## Ocultar el sitio antes del lanzamiento
+`site/netlify/edge-functions/gate.js` pide usuario y contraseña (HTTP Basic) en todas las URLs
+mientras exista la variable `SITE_PASSWORD` en Netlify (Project configuration → Environment
+variables; usuario opcional en `SITE_USER`, por defecto `estanza`). Tras crear o borrar la variable
+hay que lanzar un deploy (Deploys → *Trigger deploy*). Sin la variable el sitio es público; con ella,
+buscadores y visitantes sin la clave reciben un 401. El formulario y el webhook de Sanity no se ven
+afectados.
+
 ## Buscadores
 El sitio publica `robots.txt`, `sitemap-index.xml` (con alternativas es/en), una página 404 propia y
 datos estructurados (ProfessionalService + WebSite) generados desde *Ajustes*. Pasos únicos en cuentas

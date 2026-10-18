@@ -13,6 +13,12 @@
 # The Sanity webhook (Studio → API → Webhooks) should POST to a Netlify Build Hook
 # on create/update/delete of the "landing" and "settings" documents.
 
+# Password gate (site/netlify/edge-functions/gate.js): only acts while the
+# SITE_PASSWORD environment variable exists in Netlify; otherwise it passes through.
+[[edge_functions]]
+  function = "gate"
+  path = "/*"
+
 # The old Netlify subdomain forwards to the custom domain so there is one canonical site.
 [[redirects]]
   from = "https://estanzacx.netlify.app/*"
