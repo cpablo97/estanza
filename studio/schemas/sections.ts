@@ -114,7 +114,8 @@ export const servicesSection = defineType({
       ],
       validation: (r) => r.min(1),
     }),
-    ...shared,
+    // The sidebar lists one link per service, so the section's own menu link is never read.
+    ...shared.map((f) => (f.name === "menuLabel" ? { ...f, hidden: true } : f)),
   ],
   preview: preview("Servicios"),
 });

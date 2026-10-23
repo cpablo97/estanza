@@ -17,7 +17,7 @@ En **Servicios**, cada servicio tiene además **Incluye (hasta 3)**: frases cort
 
 ## Cambiar o añadir imágenes
 1. Abre la sección y pulsa sobre la imagen → **Subir** o **Seleccionar** de la biblioteca.
-2. Usa **Editar punto de interés** para elegir qué parte de la foto debe quedar siempre visible.
+2. Si hace falta, abre **Editar recorte y punto de interés** y arrastra las esquinas del **recorte** (el rectángulo) para dejar fuera lo que no quieres que se vea. El círculo (punto de interés) no cambia nada en esta web; puedes ignorarlo.
 3. Escribe el **texto alternativo** (una frase que describa la foto; es obligatorio por accesibilidad).
 
 La **Portada** admite de 2 a 4 fotos flotantes.
