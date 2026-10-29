@@ -2,12 +2,15 @@
 import type { ClosingSection, Locale, Settings } from "../../lib/types";
 import { loc } from "../../lib/loc";
 import Room from "../Room.astro";
+import ArrowUpLong from "../svg/ArrowUpLong.astro";
 
-interface Props { section: ClosingSection; locale: Locale; index: number; settings: Settings }
-const { section, locale, index, settings } = Astro.props;
+interface Props { section: ClosingSection; locale: Locale; index: number; settings: Settings; top: string }
+const { section, locale, index, settings, top } = Astro.props;
 const id = `${section._key}-title`;
 const year = new Date().getFullYear();
 const social = section.showSocial !== false ? settings.socialLinks ?? [] : [];
+// Documents saved before the field existed have no label yet.
+const backToTop = loc(section.backToTopLabel, locale) || (locale === "en" ? "Back to top" : "Volver arriba");
 ---
 <Room section={section} locale={locale} index={index} kind="closing" titleId={id}>
   <div class="closing">
@@ -23,4 +26,10 @@ const social = section.showSocial !== false ? settings.socialLinks ?? [] : [];
       <p class="closing-copy">© <span data-year>{year}</span> {settings.copyrightName || "Estanza"}</p>
     </div>
   </div>
+  {section.showBackToTop !== false && (
+    <a class="back-to-top" href={`#${top}`} data-reveal style="--i: 4;">
+      <ArrowUpLong />
+      <span>{backToTop}</span>
+    </a>
+  )}
 </Room>

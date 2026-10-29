@@ -25,7 +25,7 @@ export type TextImageSection = Shared & { _type: "textImageSection" | "genericSe
 export type ServicesSection = Shared & { _type: "servicesSection"; eyebrow?: L; title: L; items: { _key: string; menuLabel: L; title: L; body: L; tags?: L[]; stripe: Img }[] };
 export type StepsSection = Shared & { _type: "stepsSection"; eyebrow?: L; title: L; steps: { _key: string; title: L; text: L }[] };
 export type ContactSection = Shared & { _type: "contactSection"; eyebrow?: L; title: L; lede?: L; disclaimer: L };
-export type ClosingSection = Shared & { _type: "closingSection"; title: L; line?: L; showSocial?: boolean };
+export type ClosingSection = Shared & { _type: "closingSection"; title: L; line?: L; showSocial?: boolean; showBackToTop?: boolean; backToTopLabel?: L };
 export type Section = HeroSection | TextImageSection | ServicesSection | StepsSection | ContactSection | ClosingSection;
 
 export type SocialLink = { _key: string; label: string; url: string };

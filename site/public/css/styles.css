@@ -860,7 +860,11 @@ body[data-theme="dark"] {
 .room--closing .room-inner {
   justify-items: center;
   text-align: center;
+  /* the closing block stays centred; the back-to-top arrow sits at the foot of the room */
+  grid-template-rows: 1fr auto;
+  align-content: stretch;
 }
+.room--closing .closing { align-self: center; }
 .closing {
   display: flex;
   flex-direction: column;
@@ -913,6 +917,26 @@ body[data-theme="dark"] {
 .closing-social li + li::before { content: "·"; padding-inline: var(--space-3); opacity: 0.7; }
 .closing-social a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 0.25em; }
 .closing-copy { margin: 0; }
+/* Back to top: a long hairline arrow over a small caps label, in the voice of .closing-meta */
+.back-to-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  font-size: var(--fs-small);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+.arrow-up-long {
+  height: clamp(72px, 13dvh, 136px);
+  aspect-ratio: 24 / 120;
+  overflow: visible;
+  transition: transform 0.6s var(--ease-ui);
+}
+.back-to-top span { opacity: 0.75; transition: opacity var(--dur-ui) var(--ease-ui); }
+.back-to-top:hover .arrow-up-long, .back-to-top:focus-visible .arrow-up-long { transform: translateY(calc(-1 * var(--space-2))); }
+.back-to-top:hover span, .back-to-top:focus-visible span { opacity: 1; }
 
 /* ---------- 7. Components ---------- */
 .btn {
@@ -1139,7 +1163,7 @@ body[data-theme="dark"] {
   [data-reveal] { opacity: 1; translate: 0 0; transition: none; }
   .carousel-track { transition: none; }
   .hero-photo img { animation: none; }
-  .btn:hover, .nav-link--inline:hover .arrow-glyph, .btn:hover .btn-arrow { transform: none; }
+  .btn:hover, .nav-link--inline:hover .arrow-glyph, .btn:hover .btn-arrow, .back-to-top:hover .arrow-up-long, .back-to-top:focus-visible .arrow-up-long { transform: none; }
   .check.is-shake .check-box { animation: none; border-color: var(--color-error); }
 }
 

@@ -268,13 +268,15 @@ the privacy PDF, and where submissions are sent (**Servicio del formulario**). T
 section automatically shows the e-mail and social links from Ajustes.
 
 ### 4.7 **Cierre** — at most one, normally last
-Closing room: a title, an optional line, the contact e-mail, the social links and the © line.
+Closing room: a title, an optional line, the contact e-mail, the social links, the © line and a back-to-top arrow.
 
 | Studio label | Required | Behaviour |
 |---|---|---|
 | **Título** (ES/EN) | yes | Heading (current: *Nada en Estanza es al azar*). There is deliberately no eyebrow. |
 | **Frase** (ES/EN) | no | One paragraph under the title. |
 | **Mostrar redes sociales** | toggle, default on | On: lists the links from **Ajustes → Contacto → Redes sociales**. Off: hides them here (they still appear in the sidebar). |
+| **Mostrar «Volver arriba»** | toggle, default on | On: a long thin arrow at the foot of the room that takes the visitor back to the first section. Off: no arrow. |
+| **Texto bajo la flecha** (ES/EN) | no | Small caps label under the arrow (current: *Volver arriba* / *Back to top*). Hidden while the toggle is off. Empty = that default wording. |
 
 Also shown, not editable in this section: the **Correo** from Ajustes (as a mailto link), and
 **© {current year} {Nombre en el ©}**; the year updates itself.

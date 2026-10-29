@@ -8,11 +8,13 @@ import Steps from "./sections/Steps.astro";
 import Contact from "./sections/Contact.astro";
 import Closing from "./sections/Closing.astro";
 import { getContent } from "../lib/content";
+import { anchorOf } from "../lib/loc";
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const content: Content = await getContent();
 const { settings, landing } = content;
+const top = anchorOf(landing.sections[0]);
 ---
 <Base content={content} locale={locale}>
   {landing.sections.map((s, i) => {
@@ -23,7 +25,7 @@ const { settings, landing } = content;
       case "servicesSection": return <Services section={s} locale={locale} index={i} settings={settings} />;
       case "stepsSection": return <Steps section={s} locale={locale} index={i} />;
       case "contactSection": return <Contact section={s} locale={locale} index={i} settings={settings} />;
-      case "closingSection": return <Closing section={s} locale={locale} index={i} settings={settings} />;
+      case "closingSection": return <Closing section={s} locale={locale} index={i} settings={settings} top={top} />;
       default: return null;
     }
   })}

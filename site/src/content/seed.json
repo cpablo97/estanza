@@ -563,7 +563,12 @@
           "es": "Trabajemos juntos en tu próximo proyecto.",
           "en": "Let's work together on your next project."
         },
-        "showSocial": true
+        "showSocial": true,
+        "showBackToTop": true,
+        "backToTopLabel": {
+          "es": "Volver arriba",
+          "en": "Back to top"
+        }
       }
     ]
   }
