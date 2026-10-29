@@ -7,7 +7,9 @@
 (function () {
   "use strict";
 
-  function createPager({ stage, scroller, rooms, links, onChange }) {
+  // `step(index, dir)` lets the active room consume a step (the services
+  // carousel) before the pager leaves it; it returns true when it moved.
+  function createPager({ stage, scroller, rooms, links, onChange, step }) {
     const DUR = 950;      // must match --dur-room
     const LOCK = 1300;    // input lock after each change (reference value)
     const THRESH = 40;    // normalised deltaY needed to page
@@ -62,6 +64,17 @@
       }
     }
 
+    // One step in `dir`: inside the room if it takes it, otherwise to the next room.
+    // An inner step holds the same lock as a room change so inertia never skips one.
+    function advance(dir) {
+      if (typeof step === "function" && step(index, dir)) {
+        locked = true;
+        timers.push(setTimeout(() => { locked = false; acc = 0; }, LOCK));
+        return;
+      }
+      goTo(index + dir);
+    }
+
     // Can the active room be left in `dir` (1 = down, -1 = up)?
     function atBoundary(dir) {
       const el = inner(rooms[index]);
@@ -81,18 +94,21 @@
       acc += px;
       clearTimeout(idleT);
       idleT = setTimeout(() => { acc = 0; }, IDLE);
-      if (Math.abs(acc) >= THRESH) { acc = 0; goTo(index + dir); }
+      if (Math.abs(acc) >= THRESH) { acc = 0; advance(dir); }
     }
 
     function onKey(e) {
       if (e.altKey || e.ctrlKey || e.metaKey) return;
-      if (e.target.closest("input, textarea, select, [contenteditable], [data-carousel]")) return;
+      if (e.target.closest("input, textarea, select, [contenteditable]")) return;
+      if (e.key === " " && e.target.closest("[data-carousel]")) return; // Space presses the carousel buttons
       const rel = { ArrowDown: 1, PageDown: 1, ArrowUp: -1, PageUp: -1, " ": e.shiftKey ? -1 : 1 }[e.key];
       const target = e.key === "Home" ? 0 : e.key === "End" ? rooms.length - 1 : rel === undefined ? null : index + rel;
       if (target === null) return;
       if (rel !== undefined && !atBoundary(rel)) return; // let the inner room scroll first
       e.preventDefault();
-      if (!locked) goTo(target);
+      if (locked) return;
+      if (rel !== undefined) advance(rel);
+      else goTo(target);
     }
 
     function onTouchStart(e) { touchY = e.touches[0].clientY; }
@@ -101,7 +117,7 @@
       const d = touchY - e.changedTouches[0].clientY;
       touchY = null;
       const dir = Math.sign(d);
-      if (Math.abs(d) >= SWIPE && atBoundary(dir) && !locked) goTo(index + dir);
+      if (Math.abs(d) >= SWIPE && atBoundary(dir) && !locked) advance(dir);
     }
 
     function fromHash(instant) {

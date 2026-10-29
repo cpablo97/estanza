@@ -636,6 +636,8 @@ body[data-theme="dark"] {
   transition: opacity 0.65s var(--ease-room);
 }
 .service-card:not(.is-current) { opacity: 0; }
+.carousel-track.is-instant,
+.carousel-track.is-instant .service-card { transition: none; }
 /* The stripe takes the card's full height: the image is taken out of flow so the
    copy column alone decides how tall the card is, and the texture fills that box. */
 .service-stripe { position: relative; overflow: hidden; }

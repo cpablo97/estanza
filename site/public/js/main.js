@@ -83,7 +83,20 @@
       });
       if (onChange) onChange(index);
     }
-    function goTo(i) { index = (i + total) % total; render(); }
+    // The arrows loop; `instant` swaps the card without sliding (used while the room itself moves).
+    function goTo(i, { instant = false } = {}) {
+      index = (i + total) % total;
+      track.classList.toggle("is-instant", instant);
+      render();
+      if (instant) requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove("is-instant")));
+    }
+    // Scroll stepping does not loop: past either end it returns false and the pager changes room.
+    function step(dir) {
+      const i = index + dir;
+      if (i < 0 || i >= total) return false;
+      goTo(i);
+      return true;
+    }
 
     $('[data-dir="-1"]', root).addEventListener("click", () => goTo(index - 1));
     $('[data-dir="1"]', root).addEventListener("click", () => goTo(index + 1));
@@ -126,11 +139,11 @@
     if (document.fonts) document.fonts.ready.then(fitTitles);
 
     render();
-    return { goTo, get index() { return index; }, set onChange(fn) { onChange = fn; } };
+    return { goTo, step, total, get index() { return index; }, set onChange(fn) { onChange = fn; } };
   })();
 
   const slideLinks = $$(".nav-link[data-slide]");
-  const servicesIndex = ids.indexOf("servicios");
+  const servicesIndex = rooms.findIndex((r) => r.querySelector("[data-carousel]"));
   let currentRoom = 0;
 
   function syncSlideLinks() {
@@ -193,7 +206,16 @@
   function sync() {
     if (pagerMQ.matches && !pager) {
       stopFallback();
-      pager = window.createPager({ stage, scroller, rooms, links: navLinks, onChange: onRoomChange });
+      pager = window.createPager({
+        stage, scroller, rooms, links: navLinks,
+        // Scrolling walks through the services: entering from above starts at the
+        // first one, entering from below at the last one.
+        onChange: (i, from) => {
+          if (carousel && i === servicesIndex) carousel.goTo(from > i ? carousel.total - 1 : 0, { instant: true });
+          onRoomChange(i);
+        },
+        step: (i, dir) => !!carousel && i === servicesIndex && carousel.step(dir),
+      });
     } else if (!pagerMQ.matches && pager) {
       pager.destroy();
       pager = null;
