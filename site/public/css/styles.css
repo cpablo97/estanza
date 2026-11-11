@@ -542,10 +542,12 @@ body[data-theme="dark"] {
   animation-delay: var(--float-delay, 0s);
   will-change: transform;
 }
-/* top band: a + c (different speeds), bottom band: b — the title owns the middle */
-.hero-photo:nth-child(3n+1) { --lane: 4%; --h: 48%; --float-dur: 13s; --float-delay: -4s; }
-.hero-photo:nth-child(3n+2) { --lane-bottom: 4%; --h: 52%; --float-dur: 16s; --float-delay: -9s; }
-.hero-photo:nth-child(3n+3) { --lane: 8%; --h: 36%; --float-dur: 11s; --float-delay: -2s; }
+/* top band: a + c (opposite directions), bottom band: b — the title owns the middle.
+   All photos share one size so none reads as "farther away". */
+.hero-photo { --h: 48%; }
+.hero-photo:nth-child(3n+1) { --lane: 4%; --float-dur: 13s; --float-delay: -4s; }
+.hero-photo:nth-child(3n+2) { --lane-bottom: 4%; --float-dur: 16s; --float-delay: -9s; }
+.hero-photo:nth-child(3n+3) { --lane: 8%; --float-dur: 11s; --float-delay: -2s; }
 .room.is-active .hero-photo { transition-delay: calc(500ms + var(--i, 0) * 120ms); }
 
 @keyframes hero-float {
@@ -1064,10 +1066,10 @@ body[data-theme="dark"] {
   .hero-copy { align-items: center; padding: 0; }
   .hero-title { max-width: 12ch; }
   .hero-photos { inset: 0; }
-  .hero-photo:nth-child(3n+1) { --lane: 42%; --lane-bottom: auto; --w: 19%; --h: auto; }
-  .hero-photo:nth-child(3n+2) { --lane: 64%; --lane-bottom: auto; --w: 24%; --h: auto; }
-  .hero-photo:nth-child(3n+3) { --lane: 46%; --lane-bottom: auto; --w: 13%; --h: auto; }
-  .hero-photo { max-width: 260px; }
+  .hero-photo { --w: 20%; --h: auto; --lane-bottom: auto; max-width: 260px; }
+  .hero-photo:nth-child(3n+1) { --lane: 42%; }
+  .hero-photo:nth-child(3n+2) { --lane: 64%; }
+  .hero-photo:nth-child(3n+3) { --lane: 46%; }
 
   .about-grid { grid-template-columns: minmax(0, 1fr) 220px; column-gap: var(--space-6); }
   .room--behind .about-grid { grid-template-columns: 220px minmax(0, 1fr); }
@@ -1135,9 +1137,7 @@ body[data-theme="dark"] {
     --fs-numeral: clamp(3rem, 1.25rem + 5cqi, 5rem);
   }
   .room-inner { padding-block: var(--space-4); }
-  .hero-photo:nth-child(3n+1) { --h: 44%; }
-  .hero-photo:nth-child(3n+2) { --h: 48%; }
-  .hero-photo:nth-child(3n+3) { --h: 32%; }
+  .hero-photo { --h: 44%; }
   .sidebar { padding: var(--space-4) var(--space-5) var(--space-4); gap: var(--space-5); }
   .lang-switch { margin-bottom: calc(-1 * var(--space-2)); }
   .nav-groups { gap: var(--space-4); }

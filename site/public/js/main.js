@@ -261,8 +261,10 @@
   const driftMQ = window.matchMedia("(min-width: 600px) and (prefers-reduced-motion: no-preference)");
   if (field) {
     const photos = $$(".hero-photo", field);
-    // px per second; negative = right-to-left
-    const speeds = [22, -15, 30];
+    // px per second; negative = right-to-left. Photos 1 and 3 share the top
+    // lane and are the same size, so they move in opposite directions: a
+    // crossing lasts a few seconds instead of a long slow overtake.
+    const speeds = [22, -15, -30];
     let W = 0;
     let items = [];
     let raf = 0;
