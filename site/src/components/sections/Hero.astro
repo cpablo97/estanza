@@ -10,9 +10,10 @@ const { section, locale, index } = Astro.props;
 const title = typeof section.title === "string" ? section.title : loc(section.title, locale); // string: content not yet migrated
 // The brand line is usually the same English phrase in both languages; when the
 // Spanish page shows the English text, tell assistive tech so it's read correctly.
+const photos = section.photos ?? [];
 const titleLang = locale === "es" && typeof section.title !== "string" && section.title.en && title === section.title.en ? "en" : undefined;
 ---
-<Room section={section} locale={locale} index={index} kind="hero" titleId="hero-title">
+<Room section={section} locale={locale} index={index} kind="hero" titleId="hero-title" class={photos.length ? undefined : "room--hero-bare"}>
   <div class="hero-copy">
     <h1 class="display hero-title" id="hero-title" lang={titleLang} data-reveal style="--i: 0;">{title}</h1>
     <a class="btn" href={`#${section.ctaTarget}`} data-reveal style="--i: 1;">
@@ -20,9 +21,9 @@ const titleLang = locale === "es" && typeof section.title !== "string" && sectio
       <ArrowBtn />
     </a>
   </div>
-  <div class="hero-photos">
-    {(section.photos ?? []).map((p, i) => (
+  {photos.length > 0 && <div class="hero-photos">
+    {photos.map((p, i) => (
       <Picture img={p} locale={locale} class="hero-photo" sizes="(max-width: 599px) 50vw, (max-width: 899px) 28vw, 17vw" eager={i === 0} data-reveal style={`--i: ${i};`} />
     ))}
-  </div>
+  </div>}
 </Room>

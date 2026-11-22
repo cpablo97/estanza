@@ -256,7 +256,7 @@
      own speed and direction, leaves the frame on one side and
      re-enters from the other. Runs only while the hero is visible.
      ---------------------------------------------------------- */
-  const hero = $("#inicio");
+  const hero = $(".room--hero");
   const field = hero && $(".hero-photos", hero);
   const driftMQ = window.matchMedia("(min-width: 600px) and (prefers-reduced-motion: no-preference)");
   if (field) {

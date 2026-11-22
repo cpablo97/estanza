@@ -511,6 +511,9 @@ body[data-theme="dark"] {
   z-index: 2; /* above the floating photos */
 }
 .hero-copy .btn { position: relative; z-index: 2; }
+/* Text-only hero (no photos in the CMS): the copy is centred in the room at every size;
+   tablet and phone otherwise keep it at the top to leave the lower half to the photos. */
+.room--hero.room--hero-bare .room-inner { align-content: center; } /* beats the later per-breakpoint rules */
 
 /* Floating photo field: spans the whole room (also behind the sidebar).
    JS moves each photo horizontally and wraps it around; CSS adds the bob. */

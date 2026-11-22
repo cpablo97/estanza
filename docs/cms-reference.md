@@ -190,15 +190,15 @@ unique anchors. Each item shows its Spanish title and type in the list; click to
 | **Color personalizado (hex)** | no | Overrides the preset when valid `#rrggbb` |
 
 ### 4.1 **Portada** (hero) — exactly one, normally first
-Full-screen opening room: a very large brand line, one button, and 2–4 photos that float slowly
-across the room behind the text.
+Full-screen opening room: a very large brand line, one button, and optionally 2–4 photos that float
+slowly across the room behind the text (without photos it is a centred, text-only opening).
 
 | Studio label | Required | Behaviour |
 |---|---|---|
 | **Título (frase de marca)** (ES/EN) | yes | The big headline (the page's main heading for search engines). Help text in the Studio: if the phrase is the same in both languages, repeat it in both fields. Current value: "Turning clients into guests" in both. If the Spanish page shows the English phrase, the site marks it as English for screen readers automatically. |
 | **Botón** (ES/EN) | yes | Text of the single call-to-action button (current: *Conversemos* / *Let's talk*). |
 | **El botón lleva a (ancla)** | yes | The **anchor of another section**, typed exactly, without `#` (current: `contacto`). If it does not match any section's Ancla the button scrolls nowhere. |
-| **Fotos flotantes** | yes, 2 to 4 | Each is an image with **Texto alternativo (ES/EN)** required. Portrait frames (≈2:3). Desktop/tablet: all photos float in lanes (first and third in the upper band, second in the lower band). **Phones (< 600 px wide): only the first two photos are shown**, stacked under the text; the third and fourth are hidden. The first photo is loaded with priority, so it should be the strongest one. Order in the list = order of the lanes. |
+| **Fotos flotantes** | no; if used, 2 to 4 | **Empty = text-only Portada**: no photos, the headline and button are centred in the room on every screen size. One single photo is not allowed (the Studio asks for at least 2, or none). Otherwise each is an image with **Texto alternativo (ES/EN)** required. Portrait frames (≈2:3). Desktop/tablet: all photos float in lanes (first and third in the upper band, second in the lower band). **Phones (< 600 px wide): only the first two photos are shown**, stacked under the text; the third and fourth are hidden. The first photo is loaded with priority, so it should be the strongest one. Order in the list = order of the lanes. |
 | shared fields | | Hero normally has **Enlace en el menú** empty; its group is just the heading of numeral I. |
 
 No eyebrow, no body text, no colour switch beyond the shared background field.

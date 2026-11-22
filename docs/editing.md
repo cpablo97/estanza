@@ -20,7 +20,7 @@ En **Servicios**, cada servicio tiene además **Incluye (hasta 3)**: frases cort
 2. Si hace falta, abre **Editar recorte y punto de interés** y arrastra las esquinas del **recorte** (el rectángulo) para dejar fuera lo que no quieres que se vea. Después coloca el círculo (**punto de interés**) sobre lo importante, por ejemplo una cara: el marco de cada foto tiene proporciones fijas y, si hay que recortarla para que encaje, la web mantiene ese punto a la vista. Si no lo tocas, la foto se centra.
 3. Escribe el **texto alternativo** (una frase que describa la foto; es obligatorio por accesibilidad).
 
-La **Portada** necesita de 2 a 4 fotos flotantes; sin ellas no se puede publicar.
+La **Portada** puede llevar de 2 a 4 fotos flotantes, o ninguna: si quitas todas, queda una portada solo con texto, centrada. Con una sola foto no se puede publicar.
 
 ## Añadir una sección nueva
 En **Página** → **Añadir elemento** → **Sección nueva (texto, imagen opcional)**. Rellena título, cuerpo, el ancla (una palabra sin acentos, p. ej. `equipo`), el grupo del menú y el color de fondo. Si el fondo es oscuro, el texto pasa a claro automáticamente.
