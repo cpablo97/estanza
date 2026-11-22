@@ -21,7 +21,7 @@ const titleLang = locale === "es" && typeof section.title !== "string" && sectio
     </a>
   </div>
   <div class="hero-photos">
-    {section.photos.map((p, i) => (
+    {(section.photos ?? []).map((p, i) => (
       <Picture img={p} locale={locale} class="hero-photo" sizes="(max-width: 599px) 50vw, (max-width: 899px) 28vw, 17vw" eager={i === 0} data-reveal style={`--i: ${i};`} />
     ))}
   </div>

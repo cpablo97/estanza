@@ -19,7 +19,7 @@ export function buildMenu(sections: Section[], settings: Settings, locale: Local
     const anchor = anchorOf(s);
     g.rooms.push(anchor);
     if (s._type === "servicesSection") {
-      s.items.forEach((it, i) => g.links.push({ href: `#${anchor}`, label: loc(it.menuLabel, locale) ?? "", slide: i }));
+      (s.items ?? []).forEach((it, i) => g.links.push({ href: `#${anchor}`, label: loc(it.menuLabel, locale) ?? "", slide: i }));
     } else if (s.menuLabel) {
       g.links.push({ href: `#${anchor}`, label: loc(s.menuLabel, locale) ?? "" });
     }
