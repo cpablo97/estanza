@@ -1172,5 +1172,69 @@ body[data-theme="dark"] {
   .check.is-shake .check-box { animation: none; border-color: var(--color-error); }
 }
 
+/* ---------- 10. Site intro + scroll reveal ---------- */
+/* Hero title letters (split in Hero.astro): words never break, letters can move. */
+.hero-word { display: inline-block; white-space: nowrap; }
+.hero-char { display: inline-block; }
+
+/* html.is-intro is set before first paint on the first visit of a session (Base.astro) and removed
+   after ~3.6s. Keyframes only give a `from`: each element animates to its own resting style, so
+   nothing jumps when the class goes away. Order: logo → headline → menu → button → photos → foot. */
+@keyframes intro-rise { from { opacity: 0; transform: translateY(0.45em); filter: blur(12px); } }
+@keyframes intro-letter { from { opacity: 0; transform: translateY(14px); } }
+@keyframes intro-up { from { opacity: 0; transform: translateY(16px); } }
+@keyframes intro-left { from { opacity: 0; transform: translateX(-18px); } }
+@keyframes intro-pop { from { opacity: 0; transform: scale(0.8); } }
+@keyframes intro-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 -1px 0 0); } }
+@keyframes intro-unveil { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(-30%); } }
+
+:root { --ease-intro: cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* Logo: E-S-T-A-N-Z-A rise one after the other, then the subtitle */
+.is-intro .logo-mark path {
+  transform-box: fill-box;
+  animation: intro-letter 0.8s var(--ease-intro) both;
+  animation-delay: calc(150ms + var(--n, 0) * 70ms);
+}
+.logo-mark path:nth-child(1) { --n: 0; }
+.logo-mark path:nth-child(2) { --n: 1; }
+.logo-mark path:nth-child(3) { --n: 2; }
+.logo-mark path:nth-child(4) { --n: 3; }
+.logo-mark path:nth-child(5) { --n: 4; }
+.logo-mark path:nth-child(6) { --n: 5; }
+.logo-mark path:nth-child(7) { --n: 6; }
+.is-intro .logo-subtitle { animation: intro-up 0.8s var(--ease-intro) 700ms both; }
+
+/* Menu: language switch, then each group (numeral, label, links) cascades */
+.is-intro .lang-switch { animation: intro-left 0.7s var(--ease-intro) 650ms both; }
+.is-intro .nav-numeral,
+.is-intro .nav-label { animation: intro-left 0.7s var(--ease-intro) both; animation-delay: calc(750ms + var(--g, 0) * 120ms); }
+.is-intro .nav-link { animation: intro-left 0.7s var(--ease-intro) both; animation-delay: calc(800ms + var(--g, 0) * 120ms + var(--k, 1) * 50ms); }
+.is-intro .sidebar-foot { animation: intro-wipe 1.1s var(--ease-ui) 1300ms both; }
+.is-intro .hamburger { animation: intro-pop 0.6s var(--ease-intro) 200ms both; }
+
+/* Hero: the headline rises out of a blur letter by letter, then the button, then the photos */
+.is-intro .hero-char { animation: intro-rise 1s var(--ease-intro) both; animation-delay: calc(350ms + var(--c, 0) * 35ms); }
+.is-intro .hero-copy .btn { animation: intro-pop 0.7s var(--ease-intro) both; animation-delay: calc(650ms + var(--chars, 20) * 35ms); }
+.is-intro .hero-photo img {
+  animation: intro-unveil 1.3s var(--ease-ui) both, hero-float var(--float-dur, 12s) ease-in-out infinite alternate;
+  animation-delay: calc(1000ms + var(--i, 0) * 180ms), var(--float-delay, 0s);
+}
+@media (max-width: 599px) {
+  .is-intro .hero-photo img { animation: intro-unveil 1.3s var(--ease-ui) both; animation-delay: calc(1000ms + var(--i, 0) * 180ms); }
+}
+
+/* Phone/tablet (no pager): sections rise into view as they scroll in. main.js adds
+   html.has-scroll-reveal only when motion is allowed and marks each element .is-seen. */
+@media (max-width: 899px) {
+  html.has-scroll-reveal .room:not(.room--hero) [data-reveal] {
+    opacity: 0;
+    translate: 0 var(--space-6);
+    transition: opacity 0.9s var(--ease-room), translate 1.1s var(--ease-intro);
+    transition-delay: calc(var(--i, 0) * 120ms);
+  }
+  html.has-scroll-reveal .room:not(.room--hero) [data-reveal].is-seen { opacity: 1; translate: 0 0; }
+}
+
 /* Netlify Forms honeypot */
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

@@ -20,6 +20,8 @@ docs/     editing.md — guide for the client (Spanish)
 ## Local development
 `cd site && npm install && npm run dev` — works with or without Sanity credentials.
 
+The site intro (styles.css §10) plays once per browser session; add `?intro` to the URL to replay it.
+
 ## Ocultar el sitio antes del lanzamiento
 `site/netlify/edge-functions/gate.js` pide usuario y contraseña (HTTP Basic) en todas las URLs
 mientras exista la variable `SITE_PASSWORD` en Netlify (Project configuration → Environment
