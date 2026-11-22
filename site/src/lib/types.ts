@@ -5,7 +5,7 @@ export type Img = {
   asset?: { url: string; metadata?: { dimensions?: { width: number; height: number } } };
   hotspot?: { x: number; y: number; width?: number; height?: number };
   crop?: { top: number; bottom: number; left: number; right: number };
-  local?: { webp: string[]; fallback: string; width: number; height: number };
+  local?: { webp: string[]; fallback: string; width: number; height: number; source?: string };
   alt?: L;
 };
 

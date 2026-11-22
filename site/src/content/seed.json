@@ -166,13 +166,11 @@
         "photos": [
           {
             "local": {
-              "webp": [
-                "/assets/images/hero-1-480.webp",
-                "/assets/images/hero-1-960.webp"
-              ],
-              "fallback": "/assets/images/hero-1-960.jpg",
+              "webp": [],
+              "fallback": "/assets/placeholders/photo.svg",
               "width": 934,
-              "height": 1478
+              "height": 1478,
+              "source": "hero-1"
             },
             "alt": {
               "es": "Reunión de equipo en una sala de oficina",
@@ -181,13 +179,11 @@
           },
           {
             "local": {
-              "webp": [
-                "/assets/images/hero-2-480.webp",
-                "/assets/images/hero-2-960.webp"
-              ],
-              "fallback": "/assets/images/hero-2-960.jpg",
+              "webp": [],
+              "fallback": "/assets/placeholders/photo.svg",
               "width": 934,
-              "height": 1486
+              "height": 1486,
+              "source": "hero-2"
             },
             "alt": {
               "es": "Equipo de Estanza conversando en la oficina",
@@ -196,13 +192,11 @@
           },
           {
             "local": {
-              "webp": [
-                "/assets/images/hero-3-480.webp",
-                "/assets/images/hero-3-960.webp"
-              ],
-              "fallback": "/assets/images/hero-3-960.jpg",
+              "webp": [],
+              "fallback": "/assets/placeholders/photo.svg",
               "width": 930,
-              "height": 1480
+              "height": 1480,
+              "source": "hero-3"
             },
             "alt": {
               "es": "Detalle de manos trabajando",
@@ -249,13 +243,11 @@
         },
         "image": {
           "local": {
-            "webp": [
-              "/assets/images/sobre-estanza-300.webp",
-              "/assets/images/sobre-estanza-600.webp"
-            ],
-            "fallback": "/assets/images/sobre-estanza-600.jpg",
+            "webp": [],
+            "fallback": "/assets/placeholders/photo.svg",
             "width": 674,
-            "height": 762
+            "height": 762,
+            "source": "sobre-estanza"
           },
           "alt": {
             "es": "Persona trabajando en Estanza",
@@ -299,13 +291,11 @@
         },
         "image": {
           "local": {
-            "webp": [
-              "/assets/images/laura-dueri-300.webp",
-              "/assets/images/laura-dueri-600.webp"
-            ],
-            "fallback": "/assets/images/laura-dueri-600.jpg",
+            "webp": [],
+            "fallback": "/assets/placeholders/photo.svg",
             "width": 842,
-            "height": 1263
+            "height": 1263,
+            "source": "laura-dueri"
           },
           "alt": {
             "es": "Laura Dueri, fundadora de Estanza",
@@ -369,12 +359,11 @@
             ],
             "stripe": {
               "local": {
-                "webp": [
-                  "/assets/images/patron-04-512.webp"
-                ],
-                "fallback": "/assets/images/patron-04-512.webp",
+                "webp": [],
+                "fallback": "/assets/placeholders/pattern.svg",
                 "width": 512,
-                "height": 512
+                "height": 512,
+                "source": "patron-04"
               },
               "alt": {
                 "es": "",
@@ -398,12 +387,11 @@
             },
             "stripe": {
               "local": {
-                "webp": [
-                  "/assets/images/patron-05-512.webp"
-                ],
-                "fallback": "/assets/images/patron-05-512.webp",
+                "webp": [],
+                "fallback": "/assets/placeholders/pattern.svg",
                 "width": 512,
-                "height": 512
+                "height": 512,
+                "source": "patron-05"
               },
               "alt": {
                 "es": "",
@@ -427,12 +415,11 @@
             },
             "stripe": {
               "local": {
-                "webp": [
-                  "/assets/images/patron-03-512.webp"
-                ],
-                "fallback": "/assets/images/patron-03-512.webp",
+                "webp": [],
+                "fallback": "/assets/placeholders/pattern.svg",
                 "width": 512,
-                "height": 512
+                "height": 512,
+                "source": "patron-03"
               },
               "alt": {
                 "es": "",

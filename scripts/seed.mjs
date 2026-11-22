@@ -40,7 +40,8 @@ const ORIGINALS = {
 const uploaded = new Map();
 async function toAsset(img, type = "image") {
   if (!img?.local) return img;
-  const base = path.basename(img.local.fallback).replace(/-(\d+)\.(webp|jpg)$/, "").replace(/\.jpg$/, "");
+  // seed.json points the site at placeholders; `source` names the original to upload.
+  const base = img.local.source ?? path.basename(img.local.fallback).replace(/-(\d+)\.(webp|jpg)$/, "").replace(/\.jpg$/, "");
   const file = ORIGINALS[base];
   if (!file) throw new Error(`No original for ${base}`);
   if (!uploaded.has(base)) {
