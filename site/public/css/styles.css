@@ -1180,7 +1180,10 @@ body[data-theme="dark"] {
 /* html.is-intro is set before first paint on the first visit of a session (Base.astro) and removed
    after ~6s. Keyframes only give a `from`: each element animates to its own resting style, so
    nothing jumps when the class goes away. */
-@keyframes intro-rise { from { opacity: 0; transform: translateY(0.45em); filter: blur(12px); } }
+/* The headline starts at 1% opacity, not 0: invisible under the blur, but Chrome only counts text that
+   is painted with some opacity as the page's Largest Contentful Paint. At 0 the text-only hero often
+   gave Lighthouse/PageSpeed "NO_LCP" (no performance score) on mobile. */
+@keyframes intro-rise { from { opacity: 0.01; transform: translateY(0.45em); filter: blur(12px); } }
 @keyframes intro-letter { from { opacity: 0; transform: translateY(14px); } }
 @keyframes intro-up { from { opacity: 0; transform: translateY(16px); } }
 @keyframes intro-left { from { opacity: 0; transform: translateX(-18px); } }

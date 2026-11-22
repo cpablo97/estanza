@@ -13,14 +13,14 @@ const title = typeof section.title === "string" ? section.title : loc(section.ti
 const photos = section.photos ?? [];
 const titleLang = locale === "es" && typeof section.title !== "string" && section.title.en && title === section.title.en ? "en" : undefined;
 // Letters wrapped one by one for the site intro (each gets its order in --c); words stay unbreakable.
-// Screen readers get the plain sentence from the visually hidden copy instead.
+// The letters still read as the sentence for search engines (the text appears once); assistive tech
+// gets the heading from aria-label instead of letter-by-letter spans.
 let c = 0;
 const words = (title ?? "").split(/\s+/).filter(Boolean).map((w) => Array.from(w).map((ch) => ({ ch, c: c++ })));
 ---
 <Room section={section} locale={locale} index={index} kind="hero" titleId="hero-title" class={photos.length ? undefined : "room--hero-bare"}>
   <div class="hero-copy" style={`--chars: ${c};`}>
-    <h1 class="display hero-title" id="hero-title" lang={titleLang} data-reveal style="--i: 0;">
-      <span class="visually-hidden">{title}</span>
+    <h1 class="display hero-title" id="hero-title" lang={titleLang} data-reveal style="--i: 0;" aria-label={title}>
       <span aria-hidden="true">{words.map((w, wi) => (
         <Fragment><span class="hero-word">{w.map(({ ch, c }) => <span class="hero-char" style={`--c: ${c};`}>{ch}</span>)}</span>{wi < words.length - 1 ? " " : ""}</Fragment>
       ))}</span>

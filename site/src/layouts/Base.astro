@@ -24,6 +24,21 @@ const v = (process.env.COMMIT_REF || String(Date.now())).slice(0, 8);
 // Structured data: who runs the site and in which language this page is.
 const orgId = `${siteUrl}/#org`;
 const sameAs = (settings.socialLinks ?? []).map((s) => s.url);
+const areaCodes = settings.seoAreaServed?.length ? settings.seoAreaServed : settings.seoCountry ? [settings.seoCountry] : [];
+const regionName = new Intl.DisplayNames([locale], { type: "region" });
+const areaServed = areaCodes.map((code) => ({ "@type": "Country", name: regionName.of(code) ?? code }));
+// The services carousel doubles as the offer catalogue.
+const services = content.landing.sections.flatMap((s) => (s._type === "servicesSection" ? s.items ?? [] : []));
+const offerCatalog = services.length
+  ? {
+      "@type": "OfferCatalog",
+      name: loc(content.landing.sections.find((s) => s._type === "servicesSection")?.title, locale),
+      itemListElement: services.map((it) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: loc(it.title, locale), description: loc(it.body, locale), provider: { "@id": orgId } },
+      })),
+    }
+  : undefined;
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -37,14 +52,25 @@ const jsonLd = {
       image: ogImage,
       logo: `${siteUrl}/assets/icons/apple-touch-icon.png`,
       sameAs: sameAs.length ? sameAs : undefined,
-      ...(settings.seoCity
-        ? {
-            address: { "@type": "PostalAddress", addressLocality: settings.seoCity, addressCountry: settings.seoCountry || "CO" },
-            areaServed: { "@type": "Country", name: settings.seoCountry || "CO" },
-          }
-        : {}),
+      ...(settings.seoCity ? { address: { "@type": "PostalAddress", addressLocality: settings.seoCity, addressCountry: settings.seoCountry || "CO" } } : {}),
+      areaServed: areaServed.length ? areaServed : undefined,
+      knowsAbout: settings.knowsAbout?.length ? settings.knowsAbout : undefined,
+      founder: settings.founderName ? { "@type": "Person", name: settings.founderName, sameAs: settings.founderUrl ? [settings.founderUrl] : undefined } : undefined,
+      hasOfferCatalog: offerCatalog,
     },
     { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: siteTitle, inLanguage: locale, publisher: { "@id": orgId } },
+    // This page: its language and what it is about (the firm), tied to the website.
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}${path}#webpage`,
+      url: `${siteUrl}${path}`,
+      name: title,
+      description: description || undefined,
+      inLanguage: locale,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": orgId },
+      primaryImageOfPage: ogImage ? { "@type": "ImageObject", url: ogImage } : undefined,
+    },
   ],
 };
 const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
@@ -56,7 +82,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{title}</title>
 <meta name="description" content={description}>
-{noindex && <meta name="robots" content="noindex">}
+<meta name="robots" content={noindex ? "noindex" : "max-image-preview:large"}>
 <meta name="theme-color" content="#dfd8cb">
 {!noindex && <link rel="canonical" href={`${siteUrl}${path}`}>}
 {!noindex && <link rel="alternate" hreflang="es" href={`${siteUrl}/`}>}

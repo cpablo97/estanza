@@ -304,6 +304,9 @@ Three tabs at the top of the document: **Sitio**, **Contacto**, **Textos de inte
 | **Nombre en el ©** | no (default *Estanza*) | Brand name in the © line of Cierre, the site name in link previews, the organisation name in structured data, and the title of the "page not found" page. |
 | **Ciudad (datos para buscadores)** | no | Not visible on the page. Sent to search engines as the firm's location (structured data). If empty, no address is sent at all. Current: *Bogotá*. |
 | **País (código ISO de 2 letras)** | no (default *CO*) | Two uppercase letters; a yellow warning appears otherwise (does not block). Used with the city as country and "area served". |
+| **Países donde trabaja (datos para buscadores)** | no | Checkbox list of Latin American countries (plus Spain and the USA). Not visible; sent to search engines as the countries served. Empty = only the country above. |
+| **Temas de especialidad (datos para buscadores)** | no | Tags (type and press Enter). Not visible; tells search engines what the firm is expert in. |
+| **Nombre de la fundadora** / **Perfil de LinkedIn de la fundadora** | no | Not visible; links the firm to its founder in search engines (structured data). |
 
 ### 5.2 Tab **Contacto**
 
