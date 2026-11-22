@@ -30,8 +30,10 @@ En **Ajustes → Sitio**:
 - **Título del sitio** (ES / EN): lo que muestran Google y la pestaña del navegador. Unos 55 caracteres: marca + a qué se dedica, p. ej. «Estanza — Consultoría en Client Experience».
 - **Descripción** (ES / EN): el texto bajo el título en Google, unos 150 caracteres.
 - **Ciudad** y **País**: no se ven en la página; se envían a los buscadores como datos de la firma.
+- **Países donde trabaja**: marca los países de Latinoamérica donde ofreces servicios; Google lo usa para saber dónde mostrarte.
+- **Temas de especialidad**: palabras clave de lo que sabes hacer (p. ej. *experiencia del cliente*, *customer journey mapping*, *hospitalidad*). No se ven en la página.
+- **Nombre de la fundadora** y **Perfil de LinkedIn de la fundadora**: conectan la firma con su fundadora en Google.
 - **Imagen para redes**: la vista previa al compartir el enlace (1200×630).
-El título grande de la portada también tiene versión en español e inglés; en la página en español conviene que esté en español.
 
 ## Publicar
 Los cambios se guardan como borrador mientras editas. Pulsa **Publicar** (abajo a la derecha) para que salgan en la web. **Descartar cambios** vuelve a la última versión publicada.

@@ -134,7 +134,22 @@
     },
     "privacyPolicyUrl": "",
     "seoCity": "Bogotá",
-    "seoCountry": "CO"
+    "seoCountry": "CO",
+    "seoAreaServed": [
+      "CO",
+      "MX",
+      "PE",
+      "CL",
+      "EC",
+      "PA"
+    ],
+    "knowsAbout": [
+      "experiencia del cliente",
+      "customer experience",
+      "customer journey mapping",
+      "hospitalidad",
+      "servicio al cliente"
+    ]
   },
   "landing": {
     "_type": "landing",

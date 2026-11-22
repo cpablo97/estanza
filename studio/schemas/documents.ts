@@ -52,6 +52,28 @@ export const settings = defineType({
     defineField({ name: "copyrightName", title: "Nombre en el ©", type: "string", group: "site", initialValue: "Estanza" }),
     defineField({ name: "seoCity", title: "Ciudad (datos para buscadores)", type: "string", group: "site", description: "Dónde opera la firma; aparece solo en los datos estructurados, no en la página." }),
     defineField({ name: "seoCountry", title: "País (código ISO de 2 letras)", type: "string", group: "site", initialValue: "CO", validation: (r) => r.regex(/^[A-Z]{2}$/).warning("Dos letras mayúsculas, p. ej. CO") }),
+    defineField({
+      name: "seoAreaServed",
+      title: "Países donde trabaja (datos para buscadores)",
+      description: "Le dice a Google en qué países ofrece sus servicios. Vacío = solo el país de arriba.",
+      type: "array",
+      group: "site",
+      of: [defineArrayMember({ type: "string" })],
+      options: {
+        list: [
+          { title: "Argentina", value: "AR" }, { title: "Bolivia", value: "BO" }, { title: "Chile", value: "CL" },
+          { title: "Colombia", value: "CO" }, { title: "Costa Rica", value: "CR" }, { title: "Ecuador", value: "EC" },
+          { title: "El Salvador", value: "SV" }, { title: "España", value: "ES" }, { title: "Estados Unidos", value: "US" },
+          { title: "Guatemala", value: "GT" }, { title: "Honduras", value: "HN" }, { title: "México", value: "MX" },
+          { title: "Nicaragua", value: "NI" }, { title: "Panamá", value: "PA" }, { title: "Paraguay", value: "PY" },
+          { title: "Perú", value: "PE" }, { title: "Puerto Rico", value: "PR" }, { title: "República Dominicana", value: "DO" },
+          { title: "Uruguay", value: "UY" }, { title: "Venezuela", value: "VE" },
+        ],
+      },
+    }),
+    defineField({ name: "knowsAbout", title: "Temas de especialidad (datos para buscadores)", type: "array", group: "site", of: [defineArrayMember({ type: "string" })], options: { layout: "tags" }, description: "Palabras clave de lo que sabe hacer la firma, p. ej. experiencia del cliente, customer journey mapping, hospitalidad. No se muestran en la página." }),
+    defineField({ name: "founderName", title: "Nombre de la fundadora (datos para buscadores)", type: "string", group: "site" }),
+    defineField({ name: "founderUrl", title: "Perfil de LinkedIn de la fundadora", type: "url", group: "site" }),
 
     defineField({ name: "email", title: "Correo", type: "string", group: "contact", validation: (r) => r.required().email() }),
     defineField({

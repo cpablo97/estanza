@@ -38,6 +38,10 @@ export type Settings = {
   copyrightName?: string;
   seoCity?: string;
   seoCountry?: string;
+  seoAreaServed?: string[];
+  knowsAbout?: string[];
+  founderName?: string;
+  founderUrl?: string;
   email: string;
   socialLinks?: SocialLink[];
   phonePrefixDefault?: string;
