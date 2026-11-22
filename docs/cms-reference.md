@@ -40,9 +40,9 @@ Experience consultancy. The page is a horizontal sequence of full-screen **"room
 with its own background colour. A fixed **sidebar menu** on the left lists the sections in numbered
 groups (I., II., III.…), shows the language switch (*español / english*), and at the bottom shows the
 name of the room currently on screen with a counter like **03 / 07**. On phones the sidebar becomes a
-hamburger drawer. On the first visit of a browser session the page **builds itself up** in about
-two and a half seconds (logo letter by letter, headline rising out of a blur, menu cascading in, photos
-unveiling); on phones and tablets each section's content also rises in as it scrolls into view. This is
+hamburger drawer. On the first visit of a browser session the page **builds itself up**: first the menu
+(logo letter by letter, then the menu entries cascading in), then the hero (headline rising out of a
+blur letter by letter, the button, the photos unveiling), about four and a half seconds in all; on phones and tablets each section's content also rises in as it scrolls into view. This is
 automatic and not editable; it is skipped for visitors whose device asks for reduced motion. All content comes from Sanity; the site is rebuilt and redeployed automatically on
 Netlify every time something is **published** in the Studio (about one to two minutes). Until launch the
 whole site is behind a username/password prompt (username `estanza`); that is a Netlify setting, not

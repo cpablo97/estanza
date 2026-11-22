@@ -97,7 +97,7 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     if (!force && sessionStorage.getItem("estanza-intro")) return;
     sessionStorage.setItem("estanza-intro", "1");
     d.classList.add("is-intro");
-    setTimeout(function () { d.classList.remove("is-intro"); }, 3600);
+    setTimeout(function () { d.classList.remove("is-intro"); }, 6000); // after the last photo; a longer headline just ends its tail early
   } catch (e) { /* storage blocked: no intro */ }
 })();
 </script>
