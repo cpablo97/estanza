@@ -10,7 +10,8 @@ interface Props { section: ServicesSection; locale: Locale; index: number; setti
 const { section, locale, index, settings } = Astro.props;
 const id = `${section._key}-title`;
 const L = (k: string) => loc(settings.labels[k], locale);
-const n = section.items.length;
+const items = section.items ?? [];
+const n = items.length;
 ---
 <Room section={section} locale={locale} index={index} kind="services" titleId={id}>
   <div class="carousel" data-carousel role="region" aria-roledescription={L("carousel")} aria-labelledby={id}>
@@ -28,7 +29,7 @@ const n = section.items.length;
 
     <div class="carousel-viewport" data-reveal style="--i: 1;">
       <div class="carousel-track" data-track>
-        {section.items.map((it, i) => (
+        {items.map((it, i) => (
           <article class:list={["service-card", { "is-current": i === 0 }]} aria-roledescription={L("slide")} aria-label={`${i + 1} / ${n}`}>
             <div class="service-stripe"><Picture img={it.stripe} locale={locale} widths={[512]} sizes="123px" /></div>
             <div class="service-body">

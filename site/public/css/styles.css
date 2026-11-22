@@ -511,6 +511,9 @@ body[data-theme="dark"] {
   z-index: 2; /* above the floating photos */
 }
 .hero-copy .btn { position: relative; z-index: 2; }
+/* Text-only hero (no photos in the CMS): the copy is centred in the room at every size;
+   tablet and phone otherwise keep it at the top to leave the lower half to the photos. */
+.room--hero.room--hero-bare .room-inner { align-content: center; } /* beats the later per-breakpoint rules */
 
 /* Floating photo field: spans the whole room (also behind the sidebar).
    JS moves each photo horizontally and wraps it around; CSS adds the bob. */
@@ -575,9 +578,11 @@ body[data-theme="dark"] {
 .about-photo {
   aspect-ratio: 265 / 300;
   width: 100%;
-  object-fit: cover;
+  overflow: hidden;
   box-shadow: var(--shadow-photo);
 }
+/* The frame decides the proportions; the photo fills it (object-position comes from the CMS hotspot). */
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
 .room--behind .about-grid { grid-template-columns: clamp(180px, 24cqi, 300px) minmax(0, 1fr); }
 .room--behind .about-photo { aspect-ratio: 265 / 368; grid-row: 1 / 3; align-self: start; }
 .room--behind .about-head { grid-column: 2; }

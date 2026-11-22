@@ -95,11 +95,14 @@ Almost every text field is a pair of columns: **Español** and **English**.
 - Accepted: JPG, PNG, WebP (any common web format). The site converts and resizes automatically
   (WebP with JPEG fallback), so the client should upload good-quality originals and not worry about
   file size optimisation; 1,000–2,000 px on the long side is plenty.
-- **Crop vs. hotspot — important nuance:** in the hotspot/crop editor, the **crop** (the rectangle
-  with corner handles) *is* applied on the site: anything outside is cut. The **hotspot** (the circle)
-  currently has **no visible effect** on this site, because images are requested by width only and
-  then centred inside their frame. Tell the client: *to control which part of a photo is visible, drag
-  the crop handles; the circle can be ignored.*
+- **Crop and hotspot:** in the hotspot/crop editor, the **crop** (the rectangle with corner handles)
+  decides what part of the photo can appear at all: anything outside is cut. The **hotspot** (the
+  circle) marks the important part (usually a face). Frames on the site have fixed proportions and the
+  photo fills them, so part of it is usually trimmed; the site shifts the photo so the hotspot always
+  stays inside the frame and the trimming falls on the far side. Left untouched, the photo is
+  centred. Tell the client: *drag the crop to remove what must never show; move the circle
+  onto the face or subject so it stays in view.* (Not available on the **Patrón lateral** and
+  **Imagen para redes**, which have no hotspot.)
 - **Texto alternativo (ES / EN)** appears under most images and is **required (Spanish)**. It is the
   description read by screen readers and used by search engines; it is not shown visually. One short
   sentence describing the photo ("Equipo de Estanza conversando en la oficina").
@@ -187,15 +190,15 @@ unique anchors. Each item shows its Spanish title and type in the list; click to
 | **Color personalizado (hex)** | no | Overrides the preset when valid `#rrggbb` |
 
 ### 4.1 **Portada** (hero) — exactly one, normally first
-Full-screen opening room: a very large brand line, one button, and 2–4 photos that float slowly
-across the room behind the text.
+Full-screen opening room: a very large brand line, one button, and optionally 2–4 photos that float
+slowly across the room behind the text (without photos it is a centred, text-only opening).
 
 | Studio label | Required | Behaviour |
 |---|---|---|
 | **Título (frase de marca)** (ES/EN) | yes | The big headline (the page's main heading for search engines). Help text in the Studio: if the phrase is the same in both languages, repeat it in both fields. Current value: "Turning clients into guests" in both. If the Spanish page shows the English phrase, the site marks it as English for screen readers automatically. |
 | **Botón** (ES/EN) | yes | Text of the single call-to-action button (current: *Conversemos* / *Let's talk*). |
 | **El botón lleva a (ancla)** | yes | The **anchor of another section**, typed exactly, without `#` (current: `contacto`). If it does not match any section's Ancla the button scrolls nowhere. |
-| **Fotos flotantes** | 2 to 4 | Each is an image with **Texto alternativo (ES/EN)** required. Portrait frames (≈2:3). Desktop/tablet: all photos float in lanes (first and third in the upper band, second in the lower band). **Phones (< 600 px wide): only the first two photos are shown**, stacked under the text; the third and fourth are hidden. The first photo is loaded with priority, so it should be the strongest one. Order in the list = order of the lanes. |
+| **Fotos flotantes** | no; if used, 2 to 4 | **Empty = text-only Portada**: no photos, the headline and button are centred in the room on every screen size. One single photo is not allowed (the Studio asks for at least 2, or none). Otherwise each is an image with **Texto alternativo (ES/EN)** required. Portrait frames (≈2:3). Desktop/tablet: all photos float in lanes (first and third in the upper band, second in the lower band). **Phones (< 600 px wide): only the first two photos are shown**, stacked under the text; the third and fourth are hidden. The first photo is loaded with priority, so it should be the strongest one. Order in the list = order of the lanes. |
 | shared fields | | Hero normally has **Enlace en el menú** empty; its group is just the heading of numeral I. |
 
 No eyebrow, no body text, no colour switch beyond the shared background field.
@@ -226,7 +229,7 @@ One room with a horizontal carousel of service cards, previous/next arrows and a
 |---|---|---|
 | **Antetítulo** (ES/EN) | no | Small label above the heading. |
 | **Título** (ES/EN) | yes | Section heading (current: *Lo que hacemos*). |
-| **Servicios** | at least 1 | The list of cards. Order = carousel order = order of links in the sidebar. Each card gets an automatic number **01, 02, 03…** |
+| **Servicios** | yes, at least 1 | The list of cards. Order = carousel order = order of links in the sidebar. Each card gets an automatic number **01, 02, 03…** |
 
 Each service (**Añadir elemento** inside **Servicios**):
 
@@ -248,7 +251,7 @@ A room with a heading and a vertical list of numbered steps (**01, 02, 03…** a
 |---|---|---|
 | **Antetítulo** (ES/EN) | no | Small label above the heading. |
 | **Título** (ES/EN) | yes | Section heading (current: *Cómo comenzamos*). |
-| **Pasos** | at least 1 | Each step has **Título** (ES/EN, required) and **Texto** (ES/EN, required, one paragraph). Numbering follows the order; drag to reorder. No practical maximum, but the room scrolls if there are many. |
+| **Pasos** | yes, at least 1 | Each step has **Título** (ES/EN, required) and **Texto** (ES/EN, required, one paragraph). Numbering follows the order; drag to reorder. No practical maximum, but the room scrolls if there are many. |
 
 ### 4.6 **Contacto (formulario)** — at most one
 Two columns: intro text on the left, the contact form on the right.
