@@ -27,16 +27,16 @@ const L = (k: string) => loc(settings.labels[k], locale);
       <a class="lang-btn" href="/en/" lang="en" hreflang="en" aria-current={locale === "en" ? "page" : undefined}>english</a>
     </div>
 
-    {groups.map((g) => (
-      <div class="nav-group" data-rooms={g.rooms.join(" ")}>
+    {groups.map((g, gi) => (
+      <div class="nav-group" data-rooms={g.rooms.join(" ")} style={`--g: ${gi};`}>
         <p class="nav-numeral" aria-hidden="true">{g.numeral}</p>
         <div class="nav-links">
           <p class="nav-label">{g.label}</p>
-          {g.links.map((l) =>
+          {g.links.map((l, k) =>
             l.inline ? (
-              <a class="nav-link nav-link--inline" href={l.href} target={l.external ? "_blank" : undefined} rel={l.external ? "noopener" : undefined}>{l.label} <ArrowGlyph /></a>
+              <a class="nav-link nav-link--inline" style={`--k: ${k + 1};`} href={l.href} target={l.external ? "_blank" : undefined} rel={l.external ? "noopener" : undefined}>{l.label} <ArrowGlyph /></a>
             ) : (
-              <a class="nav-link" href={l.href} data-slide={l.slide !== undefined ? String(l.slide) : undefined}>{l.label}</a>
+              <a class="nav-link" style={`--k: ${k + 1};`} href={l.href} data-slide={l.slide !== undefined ? String(l.slide) : undefined}>{l.label}</a>
             )
           )}
         </div>

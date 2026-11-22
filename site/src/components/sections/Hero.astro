@@ -12,10 +12,19 @@ const title = typeof section.title === "string" ? section.title : loc(section.ti
 // Spanish page shows the English text, tell assistive tech so it's read correctly.
 const photos = section.photos ?? [];
 const titleLang = locale === "es" && typeof section.title !== "string" && section.title.en && title === section.title.en ? "en" : undefined;
+// Letters wrapped one by one for the site intro (each gets its order in --c); words stay unbreakable.
+// Screen readers get the plain sentence from the visually hidden copy instead.
+let c = 0;
+const words = (title ?? "").split(/\s+/).filter(Boolean).map((w) => Array.from(w).map((ch) => ({ ch, c: c++ })));
 ---
 <Room section={section} locale={locale} index={index} kind="hero" titleId="hero-title" class={photos.length ? undefined : "room--hero-bare"}>
-  <div class="hero-copy">
-    <h1 class="display hero-title" id="hero-title" lang={titleLang} data-reveal style="--i: 0;">{title}</h1>
+  <div class="hero-copy" style={`--chars: ${c};`}>
+    <h1 class="display hero-title" id="hero-title" lang={titleLang} data-reveal style="--i: 0;">
+      <span class="visually-hidden">{title}</span>
+      <span aria-hidden="true">{words.map((w, wi) => (
+        <Fragment><span class="hero-word">{w.map(({ ch, c }) => <span class="hero-char" style={`--c: ${c};`}>{ch}</span>)}</span>{wi < words.length - 1 ? " " : ""}</Fragment>
+      ))}</span>
+    </h1>
     <a class="btn" href={`#${section.ctaTarget}`} data-reveal style="--i: 1;">
       <span>{loc(section.ctaLabel, locale)}</span>
       <ArrowBtn />

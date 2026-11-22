@@ -177,9 +177,32 @@
   const pagerMQ = window.matchMedia("(min-width: 900px) and (prefers-reduced-motion: no-preference)");
   let pager = null;
   let observer = null;
+  let revealer = null;
+
+  // Phone/tablet: each [data-reveal] block rises in once it scrolls into view (see styles.css §10).
+  // The hero is left alone: it is already on screen, and the site intro handles it.
+  const motionMQ = window.matchMedia("(prefers-reduced-motion: no-preference)");
+  function startScrollReveal() {
+    if (revealer || !motionMQ.matches) return;
+    document.documentElement.classList.add("has-scroll-reveal");
+    revealer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-seen");
+        revealer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    $$(".room:not(.room--hero) [data-reveal]:not(.is-seen)").forEach((el) => revealer.observe(el));
+  }
+  function stopScrollReveal() {
+    revealer?.disconnect();
+    revealer = null;
+    document.documentElement.classList.remove("has-scroll-reveal");
+  }
 
   function startFallback() {
     if (!("IntersectionObserver" in window)) return;
+    startScrollReveal();
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -201,6 +224,7 @@
   function stopFallback() {
     observer?.disconnect();
     observer = null;
+    stopScrollReveal();
   }
 
   function sync() {

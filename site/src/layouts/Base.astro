@@ -85,6 +85,22 @@ const jsonLdText = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 <link rel="dns-prefetch" href="https://cdn.sanity.io">
 <link rel="preload" href="/assets/fonts/AdobeArabic-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href={`/css/styles.css?v=${v}`}>
+<!-- Site intro: the page builds itself up on the first visit of a browser session (add ?intro to the
+     URL to see it again). Runs before first paint so nothing flashes; the animation is pure CSS, so
+     the page shows fully even if the rest of the JavaScript fails. Skipped for reduced motion. -->
+<script is:inline>
+(function () {
+  try {
+    var d = document.documentElement;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var force = /[?&]intro\b/.test(location.search);
+    if (!force && sessionStorage.getItem("estanza-intro")) return;
+    sessionStorage.setItem("estanza-intro", "1");
+    d.classList.add("is-intro");
+    setTimeout(function () { d.classList.remove("is-intro"); }, 6000); // after the last photo; a longer headline just ends its tail early
+  } catch (e) { /* storage blocked: no intro */ }
+})();
+</script>
 <script defer src={`/js/pager.js?v=${v}`}></script>
 <script defer src={`/js/main.js?v=${v}`}></script>
 {!noindex && <script type="application/ld+json" is:inline set:html={jsonLdText}></script>}
