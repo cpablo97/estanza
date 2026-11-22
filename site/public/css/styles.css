@@ -575,9 +575,11 @@ body[data-theme="dark"] {
 .about-photo {
   aspect-ratio: 265 / 300;
   width: 100%;
-  object-fit: cover;
+  overflow: hidden;
   box-shadow: var(--shadow-photo);
 }
+/* The frame decides the proportions; the photo fills it (object-position comes from the CMS hotspot). */
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
 .room--behind .about-grid { grid-template-columns: clamp(180px, 24cqi, 300px) minmax(0, 1fr); }
 .room--behind .about-photo { aspect-ratio: 265 / 368; grid-row: 1 / 3; align-self: start; }
 .room--behind .about-head { grid-column: 2; }
